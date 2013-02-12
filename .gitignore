@@ -1,2 +1,9 @@
+# PYTHON COMPILED FILES #
+#########################
+*.pyc
+
+
+# GENERATED AUTOSAVES #
+#######################
 *.*~
 *.*#
