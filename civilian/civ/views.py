@@ -36,11 +36,11 @@ def register(request):
             ouruser = usersf.save(commit=False)
             ouruser.user = user
             # Inserts you into a fixed faction currently
-           # test = Faction.objects.all().aggregate(Min('members'))
+            # test = Faction.objects.all().aggregate(Min('members'))
             #fname = Faction.objects.raw('SELECT F1.name FROM Faction WHERE (Select Min(members) FROM Faction)')
-            temp = '9000';
+            temp = -1;
             for f in Faction.objects.all():
-            	if f.members<=temp:
+            	if (f.members<=temp or temp<0):
             		temp=f.members
             		thename = f.name
 	
