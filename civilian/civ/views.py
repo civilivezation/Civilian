@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from civ.models import Users, UserForm,CityForm,UsersForm, Faction, City
+from django.db.models import Min
+
 
 def index(request):
     return HttpResponse("CIVILIAN")
@@ -34,10 +36,18 @@ def register(request):
             ouruser = usersf.save(commit=False)
             ouruser.user = user
             # Inserts you into a fixed faction currently
-            faction = Faction.objects.get(name="A")
+           # test = Faction.objects.all().aggregate(Min('members'))
+            #fname = Faction.objects.raw('SELECT F1.name FROM Faction WHERE (Select Min(members) FROM Faction)')
+            temp = '9000';
+            for f in Faction.objects.all():
+            	if f.members<=temp:
+            		temp=f.members
+            		thename = f.name
+	
+            faction = Faction.objects.get(name=thename)
             faction.members = faction.members +1
             faction.save()
-            ouruser.fact = Faction.objects.get(name="A")
+            ouruser.fact = Faction.objects.get(name=thename)
             ouruser.money = 2000
             city = cform.save(commit=False)
             city.name = user.username
