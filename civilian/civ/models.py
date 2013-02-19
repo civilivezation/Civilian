@@ -1,4 +1,7 @@
 from django.db import models
+from django import forms
+from django.forms import ModelForm
+from django.contrib.auth.models import User
 
 class Faction(models.Model):
     name = models.CharField(max_length=60,unique=True)
@@ -22,3 +25,23 @@ class Users(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ["username","password"]
+
+class CityForm(forms.ModelForm):
+    class Meta:
+        model = City
+        fields = []
+
+class FactionForm(forms.ModelForm):
+    class Meta:
+        model = Faction
+        fields = []
+
+class UsersForm(form.ModelForm):
+    class Meta:
+        model = Users
+        fields =[]
