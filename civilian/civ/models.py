@@ -18,13 +18,13 @@ class City(models.Model):
         return self.name
 
 class Users(models.Model):
-    name = models.CharField(max_length=35,unique=True)
+    user = models.OneToOneField(User)
     fact = models.ForeignKey(Faction)
     money = models.IntegerField()
     city = models.OneToOneField(City)
 
     def __unicode__(self):
-        return self.name
+        return self.user.username
 
 class UserForm(forms.ModelForm):
     class Meta:
@@ -41,7 +41,7 @@ class FactionForm(forms.ModelForm):
         model = Faction
         fields = []
 
-class UsersForm(form.ModelForm):
+class UsersForm(forms.ModelForm):
     class Meta:
         model = Users
         fields =[]

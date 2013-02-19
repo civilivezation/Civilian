@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from civ.models import Users, UserForm, Faction, City
+from civ.models import Users, UserForm,CityForm,UsersForm, Faction, City
 
 def index(request):
     return HttpResponse("CIVILIAN")
@@ -25,15 +25,25 @@ def register(request):
     registered = False
     if request.method == 'POST':
         uform = UserForm(data = request.POST)
-        
+        cform = CityForm(data = request.POST)
+        usersf = UsersForm(data = request.POST)
         if uform.is_valid():
-            user = uform.save(commit = False)
+            user = uform.save(commit=False)
             user.set_password(user.password)
-            user.name = user.username
-            user.faction = Faction.objects.get(name="A")
-            user.money = 2000
-            user.city = City(name=user.username)
             user.save()
+            ouruser = usersf.save(commit=False)
+            ouruser.user = user
+            # Inserts you into a fixed faction currently
+            faction = Faction.objects.get(name="A")
+            faction.members = faction.members +1
+            faction.save()
+            ouruser.fact = Faction.objects.get(name="A")
+            ouruser.money = 2000
+            city = cform.save(commit=False)
+            city.name = user.username
+            city.save()
+            ouruser.city = city
+            ouruser.save()
             registered = True
         else:
             print uform.errors
