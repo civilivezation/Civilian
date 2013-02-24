@@ -3,13 +3,14 @@
   <BODY>
     
     {% if user.is_authenticated %}
-    Welcome {{ user.name }}
-    <A href="/civ/game">GO TO YOUR CITY </A>
+    Welcome {{ user.name }} <BR>
+    <A href="/civ/home">GO TO YOUR DASHBOARD </A> |
+    <A href="/civ/game">GO TO YOUR CITY </A> |
     <A href="/civ/logout">LOGOUT </A>
     {% else %}
-    WELCOME TO CIVILIAN
+    WELCOME TO CIVILIAN <BR>
 
-    <A href="/civ/login"> LOGIN</A>
+    <A href="/civ/login"> LOGIN</A> |
     <A href="/civ/register"> REGISTER </A>
     {% endif %}
 
