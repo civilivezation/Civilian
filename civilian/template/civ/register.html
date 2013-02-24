@@ -1,14 +1,14 @@
 <BODY>
-{% if registered or user.is_authenticated %}
-        Thank you for registering. <A href="/civ/home">GO TO
-        YOUR CITY.</A>
-{% else %}
-        Register here!
-        <FORM id="user_form" method="post" action="/civ/register/">
-                {% csrf_token %}
-                {{ uform.as_p }}
-                {{ pform.as_p }}
-                <INPUT type="submit" name="submit" value="submit" />
-        </FORM>
-{% endif %}
+  {% if registered or user.is_authenticated %}
+  Thank you for registering. <A href="/civ/home">GO TO
+    YOUR CITY.</A>
+  {% else %}
+  Register here!
+  <FORM id="user_form" method="post" action="/civ/register/">
+    {% csrf_token %}
+    {{ uform.as_p }}
+    {{ pform.as_p }}
+    <INPUT type="submit" name="submit" value="submit" />
+  </FORM>
+  {% endif %}
 </BODY>
