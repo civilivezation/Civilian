@@ -12,11 +12,13 @@ from django.db.models import Min
 def index(request):
     return HttpResponse("CIVILIAN")
 
+@login_required
 def home(request):
     template = loader.get_template('civ/home.html')
     context = RequestContext(request,{})
     return HttpResponse(template.render(context))
 
+@login_required
 def game(request):
     template = loader.get_template('civ/game.html')
     context = RequestContext(request,{})
@@ -76,7 +78,7 @@ def user_login(request):
                   return HttpResponseRedirect('/civ')
               else:
                   # Return a 'disabled account' error message
-                  return HttpResponse("You're account is disabled.")
+                  return HttpResponse("Your account is disabled.")
           else:
               # Return an 'invalid login' error message.
               print  "invalid login details " + username + " " + password
