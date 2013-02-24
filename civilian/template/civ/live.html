@@ -5,7 +5,7 @@
     <P> FACTION - MEMBERS </P>
     <UL> 
       {% for fact in fact_list %}
-      <LI>{{fact.name}} - {{fact.members}} </LI>
+      <LI>{{fact.name}} - {{fact.members}} - {{fact.score}} </LI>
       {% endfor %}
     </UL>
     {% else %}

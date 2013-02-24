@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 class Faction(models.Model):
     name = models.CharField(max_length=60,unique=True)
     members = models.IntegerField()
+    score = models.IntegerField()
 
     def __unicode__(self):
         return self.name

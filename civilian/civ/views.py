@@ -59,6 +59,8 @@ def register(request):
             ouruser.city = city
             ouruser.save()
             registered = True
+            return user_login(request)
+            
         else:
             print uform.errors
     else:
