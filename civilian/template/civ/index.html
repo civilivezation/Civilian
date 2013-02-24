@@ -1,0 +1,17 @@
+<HTML>
+  <HEADER><TITLE>CIVILIAN</TITLE></HEADER>
+  <BODY>
+    
+    {% if user.is_authenticated %}
+    Welcome {{ user.name }}
+    <A href="/civ/game">GO TO YOUR CITY </A>
+    <A href="/civ/logout">LOGOUT </A>
+    {% else %}
+    WELCOME TO CIVILIAN
+
+    <A href="/civ/login"> LOGIN</A>
+    <A href="/civ/register"> REGISTER </A>
+    {% endif %}
+
+  </BODY>
+</HTML>
