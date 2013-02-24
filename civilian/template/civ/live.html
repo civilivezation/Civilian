@@ -1,0 +1,16 @@
+<HTML>
+  <HEADER><TITLE>LIVE PAGE</TITLE></HEADER>
+  <BODY>
+    {% if fact_list %}
+    <P> FACTION - MEMBERS </P>
+    <UL> 
+      {% for fact in fact_list %}
+      <LI>{{fact.name}} - {{fact.members}} </LI>
+      {% endfor %}
+    </UL>
+    {% else %}
+    <P> NO FACTIONS EXIST!</P>
+    {% endif %}
+    <A href="/civ"> JOIN THE GAME </A>
+  </BODY>
+</HTML

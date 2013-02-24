@@ -99,3 +99,9 @@ def user_logout(request):
     logout(request)
     # Redirect back to index page.
     return HttpResponseRedirect('/civ/')
+
+def live(request):
+    template = loader.get_template('civ/live.html')
+    fact_list = Faction.objects.all()
+    context = RequestContext(request, {'fact_list': fact_list})
+    return HttpResponse(template.render(context))
