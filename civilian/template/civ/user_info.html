@@ -3,18 +3,22 @@
   <BODY>
     {% if user %}
     <P> HELLO {{character.title}} {{city.name}} </P>
-	Money : {{city.money}}<BR>
-	Population : {{population}}<BR>
-	Food : {{city.food}}<BR>
-	Science : {{city.science}}<BR>
-	Military : {{city.military}}<BR>
-	Arts : {{city.arts}}<BR>
-	<BR>
-	Character: {{character.name}} <BR>
+    Money : {{city.money}}<BR>
+    Population : {{population}}<BR>
+    Food : {{city.food}}<BR>
+    Science : {{city.science}}<BR>
+    Military : {{city.military}}<BR>
+    Arts : {{city.arts}}<BR>
+    <BR>
+    Character: {{character.name}} <BR>
     {% else %}
     <P> NO USER EXIST!</P>
     {% endif %}
-	<BR>
+    <BR>
+    <FORM id="update_form" method="post" action="/civ/user_info/">
+      {% csrf_token %}
+      <INPUT type="submit" name="Add 50 credits" value="Add 50 credits" />
+      </FORM>
     <A href="/civ"> JOIN THE GAME </A>
   </BODY>
 </HTML>

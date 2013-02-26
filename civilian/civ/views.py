@@ -116,12 +116,15 @@ def live(request):
 
 @login_required
 def user_info(request):
-    template = loader.get_template('civ/user_info.html')
-    usr = request.user
-    user = Users.objects.get(user = usr)
+    context = RequestContext(request)
+    user = Users.objects.get(user = request.user)
     city = user.city
+    if request.method == 'POST':
+        city.money = city.money + 50
+        city.save()
     population = city.population*50
     character = user.character
     context = RequestContext(request, {'user':user,'city':city,
                                        'character':character,'population':population})
-    return HttpResponse(template.render(context))
+    return render_to_response('civ/user_info.html',{},context)
+
