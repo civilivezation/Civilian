@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from civ.models import Users, UserForm,CityForm,UsersForm, Faction, City
+from civ.models import Users, UserForm,CityForm,UsersForm, Faction, City, Character
 from django.db.models import Min
 
 
@@ -39,6 +39,7 @@ def register(request):
             user.save()
             ouruser = usersf.save(commit=False)
             ouruser.user = user
+            ouruser.character = Character.objects.get(name="Civilian")
             # Inserts you into a fixed faction currently
             # test = Faction.objects.all().aggregate(Min('members'))
             #fname = Faction.objects.raw('SELECT F1.name FROM Faction WHERE (Select Min(members) FROM Faction)')
@@ -52,9 +53,14 @@ def register(request):
             faction.members = faction.members +1
             faction.save()
             ouruser.fact = Faction.objects.get(name=thename)
-            ouruser.money = 2000
             city = cform.save(commit=False)
             city.name = user.username
+            city.money = 2000
+            city.population = 0
+            city.food = 0
+            city.science = 0
+            city.military = 0
+            city.arts = 0
             city.save()
             ouruser.city = city
             ouruser.save()

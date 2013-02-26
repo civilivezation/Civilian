@@ -14,6 +14,38 @@ class Faction(models.Model):
 
 class City(models.Model):
     name = models.CharField(max_length=50)
+    money = models.IntegerField() 
+    population = models.IntegerField()
+    food = models.IntegerField()
+    science = models.IntegerField()
+    military = models.IntegerField()
+    arts = models.IntegerField()
+
+    def __unicode__(self):
+        return self.name
+
+class Building(models.Model):
+    buildtype = models.CharField(max_length=50)
+    cost = models.IntegerField()
+    profit = models.IntegerField()
+    residents = models.IntegerField()
+    workers = models.IntegerField()
+    pfood = models.IntegerField()
+    part = models.IntegerField()
+    pmilitary = models.IntegerField()
+    pscience = models.IntegerField()
+    
+    def __unicode__(self):
+        return self.buildtype
+
+class Character(models.Model):
+    name = models.CharField(max_length=50)
+    cost = models.IntegerField()
+    money = models.FloatField()
+    food = models.FloatField()
+    science = models.FloatField()
+    military = models.FloatField()
+    arts = models.FloatField()
     
     def __unicode__(self):
         return self.name
@@ -21,8 +53,8 @@ class City(models.Model):
 class Users(models.Model):
     user = models.OneToOneField(User)
     fact = models.ForeignKey(Faction)
-    money = models.IntegerField()
     city = models.OneToOneField(City)
+    character = models.OneToOneField(Character)
 
     def __unicode__(self):
         return self.user.username
