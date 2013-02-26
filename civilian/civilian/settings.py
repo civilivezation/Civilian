@@ -122,7 +122,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'django_cron',
     'civ',
 )
 
@@ -154,5 +153,3 @@ LOGGING = {
         },
     }
 }
-
-CRON_POLLING_FREQUENCY = 1
