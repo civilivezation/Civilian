@@ -54,7 +54,7 @@ class Users(models.Model):
     user = models.OneToOneField(User)
     fact = models.ForeignKey(Faction)
     city = models.OneToOneField(City)
-    character = models.OneToOneField(Character)
+    character = models.ForeignKey(Character)
 
     def __unicode__(self):
         return self.user.username

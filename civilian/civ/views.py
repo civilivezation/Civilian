@@ -113,3 +113,14 @@ def live(request):
     fact_list = Faction.objects.all()
     context = RequestContext(request, {'fact_list': fact_list})
     return HttpResponse(template.render(context))
+
+@login_required
+def user_info(request):
+    template = loader.get_template('civ/user_info.html')
+    usr = request.user
+    user = Users.objects.get(user = usr)
+    city = user.city
+    character = user.character
+    context = RequestContext(request, {'user':user,'city':city,
+                                       'character':character})
+    return HttpResponse(template.render(context))

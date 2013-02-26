@@ -1,0 +1,13 @@
+<HTML>
+  <HEADER><TITLE>LIVE PAGE</TITLE></HEADER>
+  <BODY>
+    {% if user %}
+    <P> USER - CITY - CHARACTER </P>
+    {{user}} - {{city.name}} - {{character.name}}
+    {% else %}
+    <P> NO USER EXIST!</P>
+    {% endif %}
+	<BR>
+    <A href="/civ"> JOIN THE GAME </A>
+  </BODY>
+</HTML>
