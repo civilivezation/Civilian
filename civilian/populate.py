@@ -21,27 +21,27 @@ B.save()
 B = Building(buildtype="Studio",cost=3200,profit=200,residents=0,
              workers=10,pfood=0,part=30,pmilitary=0,pscience=0)
 B.save()
-C = Character(name="Scientist",cost=6000,money=1.1,food=1,
-              science=1.2,military=1.1,arts=0.9)
+C = Character(name="Scientist",title="Dr.",cost=6000,money=1.1,
+              food=1,science=1.2,military=1.1,arts=0.9)
 C.save()
-C = Character(name="Warrior",cost=3500,money=1.15,food=0.9,
-              science=0.9,military=1.3,arts=0.8)
+C = Character(name="Warrior",title="The Conquering",cost=3500,money=1.15,
+              food=0.9,science=0.9,military=1.3,arts=0.8)
 C.save()
-C = Character(name="Gentleman",cost=7000,money=1.3,food=0.85,
-              science=0.9,military=1.05,arts=1.15)
+C = Character(name="Gentleman",title="Sir",cost=7000,money=1.3,
+              food=0.85,science=0.9,military=1.05,arts=1.15)
 C.save()
-C = Character(name="Pirate",cost=1000,money=1.2,food=0.9,
-              science=0.7,military=1.15,arts=0.8)
+C = Character(name="Pirate",title="Long-John",cost=1000,money=1.2,
+              food=0.9,science=0.7,military=1.15,arts=0.8)
 C.save()
-C = Character(name="Evil-doer",cost=20000,money=1.5,food=0.3,
-              science=1.5,military=1.5,arts=0.3)
+C = Character(name="Evil-doer",title="Count von",cost=20000,money=1.5,
+              food=0.3,science=1.5,military=1.5,arts=0.3)
 C.save()
-C = Character(name="Politician",cost=4000,money=0.8,food=0.9,
-              science=1.1,military=1.1,arts=1.2)
+C = Character(name="Politician",title="President",cost=4000,money=0.8,
+              food=0.9,science=1.1,military=1.1,arts=1.2)
 C.save()
-C = Character(name="Emporer",cost=10000,money=1.1,food=1.25,
-              science=0.8,military=1.1,arts=1.1)
+C = Character(name="Emporer",title="Emporer",cost=10000,money=1.1,
+              food=1.25,science=0.8,military=1.1,arts=1.1)
 C.save()
-C = Character(name="Civilian",cost=0,money=1,food=1,
-              science=1,military=1,arts=1)
+C = Character(name="Civilian",title="Citizen",cost=0,money=1,
+              food=1,science=1,military=1,arts=1)
 C.save()

@@ -120,7 +120,8 @@ def user_info(request):
     usr = request.user
     user = Users.objects.get(user = usr)
     city = user.city
+    population = city.population*50
     character = user.character
     context = RequestContext(request, {'user':user,'city':city,
-                                       'character':character})
+                                       'character':character,'population':population})
     return HttpResponse(template.render(context))

@@ -40,6 +40,7 @@ class Building(models.Model):
 
 class Character(models.Model):
     name = models.CharField(max_length=50)
+    title = models.CharField(max_length=50)
     cost = models.IntegerField()
     money = models.FloatField()
     food = models.FloatField()
