@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from civ.models import Users, UserForm,CityForm,UsersForm, Faction, City, Character
 from django.db.models import Min
+from django.utils import simplejson
 
 
 def index(request):
@@ -119,11 +120,27 @@ def user_info(request):
     context = RequestContext(request)
     user = Users.objects.get(user = request.user)
     city = user.city
-    if request.method == 'POST':
-        city.money = city.money + 50
-        city.save()
     population = city.population*50
     character = user.character
+    if request.method == u'GET':
+        if request.is_ajax():
+            GET = request.GET
+            if GET.items():
+                btype = GET['build']
+                build = Building.objects.get(buildtype=btype)
+                print build
+                city.population = city.population+build.residents
+                city.money = city.money-build.money
+                city.food = city.food+build.pfood
+                city.art = city.part+build.part
+                city.military = city.military+build.pmilitary
+                city.science = city.science+build.pscience
+                city.save()
+                print "I'm here"
+                json = simplejson.dumps({'user':user,'city':city,
+                                         'character':character,
+                                         'population':population})
+                return HttpResponse(json,mimetype='application/json')
     context = RequestContext(request, {'user':user,'city':city,
                                        'character':character,'population':population})
     return render_to_response('civ/user_info.html',{},context)

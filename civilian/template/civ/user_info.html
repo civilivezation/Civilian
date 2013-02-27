@@ -1,4 +1,5 @@
 <HTML>
+  <script type="text/javascript" src="{{ STATIC_URL }}jquery.js"></script>
   <HEADER><TITLE>LIVE PAGE</TITLE></HEADER>
   <BODY>
     {% if user %}
@@ -11,6 +12,20 @@
     Arts : {{city.arts}}<BR>
     <BR>
     Character: {{character.name}} <BR>
+	
+	<script>
+	  function update(building){
+	  $.getJSON("/civ/user_info/",{build:building}, function(json){
+	  alert("updated!");
+	  });
+	  }
+	  function addClickHandlers(){
+	  $("#incfarm").click(function(){update("Farm")});
+	  }
+	  $(document).ready(addClickHandlers);
+	</script>
+	
+	<p> <span id="incfarm">BUY A FARM</span></p>
     {% else %}
     <P> NO USER EXIST!</P>
     {% endif %}
@@ -18,7 +33,7 @@
     <FORM id="update_form" method="post" action="/civ/user_info/">
       {% csrf_token %}
       <INPUT type="submit" name="Add 50 credits" value="Add 50 credits" />
-      </FORM>
+    </FORM>
     <A href="/civ"> JOIN THE GAME </A>
   </BODY>
 </HTML>
