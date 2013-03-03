@@ -5,7 +5,9 @@
     {% if user %}
     <P> HELLO {{character.title}} {{city.name}} </P>
     Money : {{city.money}}<BR>
-    Population : {{population}}<BR>
+    Total Population : {{city.totalpopulation}}<BR>
+	Working Population : {{city.workingpopulation}}<BR>
+	Non-Working Population : {{city.nonworkingpopulation}}<BR>
     Food : {{city.food}}<BR>
     Science : {{city.science}}<BR>
     Military : {{city.military}}<BR>
@@ -14,6 +16,7 @@
     Character: {{character.name}} <BR>
 	
 	<script>
+	
 	  function update(building){
 	  $.getJSON("/civ/user_info/",{build:building}, function(json){
 	  alert("updated!");
@@ -23,6 +26,18 @@
 	  $("#incfarm").click(function(){update("Farm")});
 	  }
 	  $(document).ready(addClickHandlers);
+	  
+	  
+		function genAJAX(bID){
+			$.ajax({type: "GET",		
+				url:	"/civ/suggest/",		
+				data:	"build="	+	bID,		
+				success:	function(message)	{	
+					alert("Congratulations, you built a "+message)
+					window.location.reload(true);
+				}		
+			});	
+		}
 	</script>
 	
 	<p> <span id="incfarm">BUY A FARM</span></p>
@@ -30,10 +45,11 @@
     <P> NO USER EXIST!</P>
     {% endif %}
     <BR>
-    <FORM id="update_form" method="post" action="/civ/user_info/">
-      {% csrf_token %}
-      <INPUT type="submit" name="Add 50 credits" value="Add 50 credits" />
-    </FORM>
+    <button onclick="genAJAX(1)">Buy residence!</button>
+    <button onclick="genAJAX(2)">Buy farm!</button>
+    <button onclick="genAJAX(3)">Buy lab!</button>
+	<button onclick="genAJAX(4)">Buy studio!</button>
+	<button onclick="genAJAX(5)">Buy barracks!</button>
     <A href="/civ"> JOIN THE GAME </A>
   </BODY>
 </HTML>

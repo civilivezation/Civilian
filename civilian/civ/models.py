@@ -15,7 +15,9 @@ class Faction(models.Model):
 class City(models.Model):
     name = models.CharField(max_length=50)
     money = models.IntegerField() 
-    population = models.IntegerField()
+    totalpopulation = models.IntegerField()
+    workingpopulation = models.IntegerField()
+    nonworkingpopulation = models.IntegerField()
     food = models.IntegerField()
     science = models.IntegerField()
     military = models.IntegerField()

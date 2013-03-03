@@ -1,13 +1,15 @@
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.http import HttpResponseRedirect
+from django.http import *
 from django.shortcuts import render_to_response
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from civ.models import Users, UserForm,CityForm,UsersForm, Faction, City, Character
+from civ.models import *
 from django.db.models import Min
 from django.utils import simplejson
+from django.utils import *
 
 
 def index(request):
@@ -57,7 +59,9 @@ def register(request):
             city = cform.save(commit=False)
             city.name = user.username
             city.money = 2000
-            city.population = 0
+            city.totalpopulation = 0
+            city.workingpopulation = 0
+            city.nonworkingpopulation = 0
             city.food = 0
             city.science = 0
             city.military = 0
@@ -120,7 +124,13 @@ def user_info(request):
     context = RequestContext(request)
     user = Users.objects.get(user = request.user)
     city = user.city
-    population = city.population*50
+    #if (request.method == 'POST'):
+    	#if request.method.value == u'Buy a residence':
+    	#print request.methodvalue
+        #city.money = city.money - 600
+        #city.population = city.population + 1
+        #city.save()
+    population = city.totalpopulation
     character = user.character
     if request.method == u'GET':
         if request.is_ajax():
@@ -129,7 +139,7 @@ def user_info(request):
                 btype = GET['build']
                 build = Building.objects.get(buildtype=btype)
                 print build
-                city.population = city.population+build.residents
+                city.totalpopulation = city.population+build.residents
                 city.money = city.money-build.money
                 city.food = city.food+build.pfood
                 city.art = city.part+build.part
@@ -145,3 +155,36 @@ def user_info(request):
                                        'character':character,'population':population})
     return render_to_response('civ/user_info.html',{},context)
 
+def	suggest(request):
+	context = RequestContext(request)
+	user = Users.objects.get(user = request.user)
+	city = user.city
+	population = city.totalpopulation
+	character = user.character	
+	btype = request.GET['build']
+	#build = Building.objects.get(buildtype=btype)
+	if btype == '1':
+		#btype = "residents";
+		build = Building.objects.get(buildtype="House")
+	if btype == '2':
+		build = Building.objects.get(buildtype="Farm")
+	if btype == '3':
+		build = Building.objects.get(buildtype="Lab")
+	if btype == '4':
+		build = Building.objects.get(buildtype="Studio")
+	if btype == '5':
+		build = Building.objects.get(buildtype="Barracks")
+	if city.money < build.cost or city.nonworkingpopulation < build.workers:
+		response = HttpResponse("nothing. You're broke. Or don't have enough guys.")
+	else:
+		city.money = city.money-build.cost
+		city.totalpopulation = city.totalpopulation+build.residents
+		city.workingpopulation = city.workingpopulation+build.workers
+		city.nonworkingpopulation = city.totalpopulation-city.workingpopulation
+		city.food = city.food+build.pfood
+		city.arts = city.arts+build.part
+		city.military = city.military+build.pmilitary
+		city.science = city.science+build.pscience
+		city.save()
+		response	=	HttpResponse(build)
+	return	response

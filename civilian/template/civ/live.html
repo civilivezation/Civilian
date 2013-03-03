@@ -2,7 +2,7 @@
   <HEADER><TITLE>LIVE PAGE</TITLE></HEADER>
   <BODY>
     {% if fact_list %}
-    <P> FACTION - MEMBERS </P>
+    <P> FACTION - MEMBERS - Score</P>
     <UL> 
       {% for fact in fact_list %}
       <LI>{{fact.name}} - {{fact.members}} - {{fact.score}} </LI>
