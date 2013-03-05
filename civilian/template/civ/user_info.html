@@ -32,7 +32,7 @@
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="span9">
+        <div class="span8">
 	<div class="hero-unit">
       <!-- Fixed navbar -->
       <div class="navbar navbar-fixed-top">
@@ -75,9 +75,21 @@
     Studios : <span id="STUDIOS">{{city.studios}}</span><BR>
     <BR>
     Character: {{character.name}} <BR>
+    
 	
 	<script>
-		  
+	$(window).load(function(){
+		$('#INCOME').text({{city.farms}}*{{farm.profit}} + {{city.labs}}*{{lab.profit}} + {{city.studios}}*{{studio.profit}} + {{city.barracks}}*{{barracks.profit}} - {{city.totalpopulation}});
+	$('#YUMS').text({{city.farms}}*{{farm.pfood}} + {{city.labs}}*{{lab.pfood}} + {{city.studios}}*{{studio.pfood}} + {{city.barracks}}*{{barracks.pfood}});
+		$('#KNOWS').text({{city.farms}}*{{farm.pscience}} + {{city.labs}}*{{lab.pscience}} + {{city.studios}}*{{studio.pscience}} + {{city.barracks}}*{{barracks.pscience}});
+		$('#GUNS').text({{city.farms}}*{{farm.pmilitary}} + {{city.labs}}*{{lab.pmilitary}} + {{city.studios}}*{{studio.pmilitary}} + {{city.barracks}}*{{barracks.pmilitary}});
+		$('#BORES').text({{city.farms}}*{{farm.part}} + {{city.labs}}*{{lab.part}} + {{city.studios}}*{{studio.part}} + {{city.barracks}}*{{barracks.part}});
+
+
+	
+	});
+		
+	
 	  function genAJAX(bID){
 	  $.ajax({type: "GET",		
 	  url:	"/civ/suggest/",
@@ -107,7 +119,20 @@
     <P> NO USER EXIST!</P>
     {% endif %}
     <A href="/civ"> Return to dashboard </A>
-    
+    </div>
+    <div class="span2">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Current Earnings</li>
+              Income per turn:<span id="INCOME">income</span><BR>
+              Food per turn:<span id="YUMS">income</span><BR>
+              Science per turn:<span id="KNOWS">income</span><BR>
+              Military per turn:<span id="GUNS">income</span><BR>
+              Art per turn:<span id="BORES">income</span><BR>
+				
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
 
 
   </BODY>
