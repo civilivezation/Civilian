@@ -1,11 +1,25 @@
 <HTML>
-  <HEADER>
-    <TITLE> LOGIN </TITLE>
+<html lang="en">
+  <script type="text/javascript" src="{{ STATIC_URL }}jquery.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}/bootstrap/js/bootstrap.js"></script>
+  <link href="{{ STATIC_URL }}/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <HEADER><meta charset="utf-8">
+    <title>Civilian Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="{{ STATIC_URL }}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
   </HEADER>
   <BODY>
     {% if user.is_authenticated %}
     <A href="/civ/home"> GO TO YOUR CITY.</A>
     {% else %}
+    <div class="hero-unit">
+    <h2>Login, mortal.</h2>
     <FORM id="login_form" method="post" action="/civ/login/">
       {% csrf_token %}
       Username:
@@ -18,6 +32,7 @@
       <br/>
       <INPUT type="submit" name="submit" value="submit" />
     </FORM>
+    </div>
     {% endif %}
   </BODY>
 </HTML>

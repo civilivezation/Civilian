@@ -1,7 +1,49 @@
 <HTML>
-<HEADER><TITLE>HOME</TITLE></HEADER>
+<html lang="en">
+  <script type="text/javascript" src="{{ STATIC_URL }}jquery.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}/bootstrap/js/bootstrap.js"></script>
+  <link href="{{ STATIC_URL }}/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <HEADER><meta charset="utf-8">
+    <title>Civilian Game Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="{{ STATIC_URL }}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+  </HEADER>
 <BODY>
-THIS IS THE CIVILIAN LANDING PAGE!
-<A href="/civ/logout">LOGOUT</A>
+{% if user %}
+ <div id="wrap">
+
+      <!-- Fixed navbar -->
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">Civilian</a>
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                <li class="active"><a href="#">Home Screen</a></li>
+
+                </li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </div>
+      </div>
+    <h1> Hello there {{character.title}} {{city.name}} </h1>
+ 
+	</div>
+	</div>
+{% else %}
+    <P> NO USER EXIST!</P>
+    {% endif %}
 </BODY>
 </HTML>

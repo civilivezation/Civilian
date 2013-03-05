@@ -1,16 +1,51 @@
 <HTML>
-  <HEADER><TITLE>LIVE PAGE</TITLE></HEADER>
-  <BODY>
+<html lang="en">
+  <script type="text/javascript" src="{{ STATIC_URL }}jquery.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}/bootstrap/js/bootstrap.js"></script>
+  <link href="{{ STATIC_URL }}/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <HEADER><meta charset="utf-8">
+    <title>Civilian Live Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="{{ STATIC_URL }}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+  </HEADER>
+ 
+   <BODY>
     {% if fact_list %}
-    <P> FACTION - MEMBERS - Score</P>
+    <div id="wrap">
+
+      <!-- Fixed navbar -->
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">Civilian</a>
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                <li class="active"><a href="#">Live Screen</a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </div>
+      </div>
+    <h1> FACTION - MEMBERS - SCORE</h1>
     <UL> 
       {% for fact in fact_list %}
-      <LI>{{fact.name}} - {{fact.members}} - {{fact.score}} </LI>
+      <h1>{{fact.name}} - {{fact.members}} - {{fact.score}} </h1>
       {% endfor %}
     </UL>
     {% else %}
     <P> NO FACTIONS EXIST!</P>
     {% endif %}
-    <A href="/civ"> JOIN THE GAME </A>
+    <A href="/civ"> Return to dashboard </A>
   </BODY>
 </HTML
