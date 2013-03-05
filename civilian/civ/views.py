@@ -192,11 +192,68 @@ def	suggest(request):
 		if city.money < build.cost or city.nonworkingpopulation < build.workers:
                     return HttpResponse(simplejson.dumps({"results":{'success':0}}))
 		city.barracks = city.barracks + 1
-        if build == None:
-            return HttpResponse(simplejson.dumps({"results":{'success':0}}))
+	if build == None:
+		return HttpResponse(simplejson.dumps({"results":{'success':0}}))
 	city.money = city.money-build.cost
 	city.workingpopulation = city.workingpopulation+build.workers
 	city.nonworkingpopulation = city.totalpopulation-city.workingpopulation
 	city.save()
+        result = {'results':[1,character.title,city.money,city.totalpopulation,city.workingpopulation,city.nonworkingpopulation,city.farms,city.labs,city.barracks,city.studios]}
+	return HttpResponse(simplejson.dumps(result))
+	
+	
+def	buyguy(request):
+	context = RequestContext(request)
+	user = Users.objects.get(user = request.user)
+	city = user.city
+        print city
+	population = city.totalpopulation
+	character = user.character
+	btype = request.GET['persona']
+	if btype == '1':
+		char = Character.objects.get(name="Scientist")
+		if city.money < char.cost:
+			return HttpResponse(simplejson.dumps({"results":{'success':0}}))
+		user.character = char
+	if btype == '2':
+		char = Character.objects.get(name="Warrior")
+		if city.money < char.cost:
+			return HttpResponse(simplejson.dumps({"results":{'success':0}}))
+		user.character = char
+	if btype == '3':
+		char = Character.objects.get(name="Gentleman")
+		if city.money < char.cost:
+			return HttpResponse(simplejson.dumps({"results":{'success':0}}))
+		user.character = char
+	if btype == '4':
+		char = Character.objects.get(name="Pirate")
+		if city.money < char.cost:
+			return HttpResponse(simplejson.dumps({"results":{'success':0}}))
+		user.character = char
+	if btype == '5':
+		char = Character.objects.get(name="Evil-doer")
+		if city.money < char.cost:
+			return HttpResponse(simplejson.dumps({"results":{'success':0}}))
+		user.character = char
+	if btype == '6':
+		char = Character.objects.get(name="Politician")
+		if city.money < char.cost:
+			return HttpResponse(simplejson.dumps({"results":{'success':0}}))
+		user.character = char
+	if btype == '7':
+		char = Character.objects.get(name="Emporer")
+		if city.money < char.cost:
+			return HttpResponse(simplejson.dumps({"results":{'success':0}}))
+		user.character = char
+	if btype == '8':
+		char = Character.objects.get(name="Civilian")
+		if city.money < char.cost:
+			return HttpResponse(simplejson.dumps({"results":{'success':0}}))
+		user.character = char
+        if char == None:
+            return HttpResponse(simplejson.dumps({"results":{'success':0}}))
+	city.money = city.money-char.cost
+	city.save()
+	user.save()
         result = {'results':[1,character.title,city.money,city.totalpopulation,city.workingpopulation,city.nonworkingpopulation,city.farms,city.labs,city.barracks,city.studios]}
 	return HttpResponse(simplejson.dumps(result))

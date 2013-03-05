@@ -27,8 +27,8 @@
                   	<li class="divider"></li>
  					<li><button type="button" class="btn"onclick="genAJAX(2)">Buy farm!<BR> Cost 1000 <BR>Employees: 30 <BR> Credits + 200p/t <BR> Food + 20p/t </button></li>
     				<li><button type="button" class="btn"onclick="genAJAX(3)">Buy lab!<BR> Cost 4000 <BR>Employees: 40 <BR> Credits + 400p/t <BR> Science + 20p/t </button></li>
-					<li><button type="button" class="btn"onclick="genAJAX(4)">Buy studio!<BR> Cost 2500 <BR>Employees: 70<BR> Credits +300 p/t <BR> Military + 25p/t </button></li>
-					<li><button type="button" class="btn"onclick="genAJAX(5)">Buy barracks!<BR> Cost 3200 <BR>Employees: 10<BR> Credits + 200p/t <BR> Art + 30p/t </button></li>
+					<li><button type="button" class="btn"onclick="genAJAX(4)">Buy studio!  <BR> Cost 3200 <BR>Employees: 10<BR> Credits + 200p/t <BR> Art + 30p/t </button></li>
+					<li><button type="button" class="btn"onclick="genAJAX(5)">Buy barracks!<BR> Cost 2500 <BR>Employees: 70<BR> Credits +300 p/t <BR> Military + 25p/t </button></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -48,15 +48,33 @@
               <ul class="nav">
                 <li class="active"><a href="#">Game Screen</a></li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Buildings Shop <b class="caret"></b></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Good Persona Shop <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                  	<li><button type="button" class="btn" onclick="genAJAX(1)">Buy residence!<BR> Cost 600 <BR> Population + 50</button></li>
-                  	<li class="divider"></li>
- 					<li><button type="button" class="btn"onclick="genAJAX(2)">Buy farm!<BR> Cost 1000 <BR>Employees: 30 <BR> Credits + 200p/t <BR> Food + 20p/t </button></li>
-    				<li><button type="button" class="btn"onclick="genAJAX(3)">Buy lab!<BR> Cost 4000 <BR>Employees: 40 <BR> Credits + 400p/t <BR> Science + 20p/t </button></li>
-					<li><button type="button" class="btn"onclick="genAJAX(4)">Buy studio!<BR> Cost 2500 <BR>Employees: 70<BR> Credits +300 p/t <BR> Military + 25p/t </button></li>
-					<li><button type="button" class="btn"onclick="genAJAX(5)">Buy barracks!<BR> Cost 3200 <BR>Employees: 10<BR> Credits + 200p/t <BR> Art + 30p/t </button></li>
+                  	<li><button type="button" class="btn" onclick="getPersona(1)">Become a Scientist!<BR> cost = 6000<BR> money = 110%<BR>
+              food = 100%<BR> science = 120%<BR> military = 110%<BR> arts = 90%</button></li>
+ 					<li><button type="button" class="btn"onclick="getPersona(2)">Become a Warrior!<BR>cost = 3500<BR> money = 115%<BR>
+              food = 90%<BR> science = 90%<BR> military = 130%<BR> arts = 80%</button></li>
+    				<li><button type="button" class="btn"onclick="getPersona(3)">Become a Gentleman!<BR>cost = 7000<BR> money = 130%<BR>
+              food = 85%<BR> science = 90%<BR> military = 105%<BR> arts = 115%</button></li>
 					
+					<li><button type="button" class="btn"onclick="getPersona(8)">Become a Civilian!<BR>cost = 0<BR> money = 100%<BR>
+              food = 100%<BR> science = 100%<BR> military = 100%<BR> arts = 100%</button></li>
+					
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Evil Persona Shop <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                  	
+					<li><button type="button" class="btn"onclick="getPersona(4)">Become a Pirate!<BR>cost = 1000<BR> money = 120%<BR>
+              food = 90%<BR> science = 70%<BR> military = 115%<BR> arts = 80%</button></li>
+					<li><button type="button" class="btn"onclick="getPersona(5)">Become a Evil-doer!<BR>cost = 20000<BR> money = 150%<BR>
+              food = 30%<BR> science = 150%<BR> military = 150%<BR> arts = 30%</button></li>
+					<li><button type="button" class="btn"onclick="getPersona(6)">Become a Politician!<BR>cost = 4000<BR> money = 80%<BR>
+              food = 90%<BR> science = 110%<BR> military = 110%<BR> arts = 120%</button></li>
+					<li><button type="button" class="btn"onclick="getPersona(7)">Become a Emporer!<BR>cost = 10000<BR> money = 110%<BR>
+              food = 125%<BR> science = 80%<BR> military = 110%<BR> arts = 110%</button></li>
+			
                   </ul>
                 </li>
               </ul>
@@ -79,17 +97,43 @@
 	
 	<script>
 	$(window).load(function(){
-		$('#INCOME').text({{city.farms}}*{{farm.profit}} + {{city.labs}}*{{lab.profit}} + {{city.studios}}*{{studio.profit}} + {{city.barracks}}*{{barracks.profit}} - {{city.totalpopulation}});
-	$('#YUMS').text({{city.farms}}*{{farm.pfood}} + {{city.labs}}*{{lab.pfood}} + {{city.studios}}*{{studio.pfood}} + {{city.barracks}}*{{barracks.pfood}});
-		$('#KNOWS').text({{city.farms}}*{{farm.pscience}} + {{city.labs}}*{{lab.pscience}} + {{city.studios}}*{{studio.pscience}} + {{city.barracks}}*{{barracks.pscience}});
-		$('#GUNS').text({{city.farms}}*{{farm.pmilitary}} + {{city.labs}}*{{lab.pmilitary}} + {{city.studios}}*{{studio.pmilitary}} + {{city.barracks}}*{{barracks.pmilitary}});
-		$('#BORES').text({{city.farms}}*{{farm.part}} + {{city.labs}}*{{lab.part}} + {{city.studios}}*{{studio.part}} + {{city.barracks}}*{{barracks.part}});
+		$('#INCOME').text(({{city.farms}}*{{farm.profit}} + {{city.labs}}*{{lab.profit}} + {{city.studios}}*{{studio.profit}} + {{city.barracks}}*{{barracks.profit}} - {{city.totalpopulation}})*{{character.money}});
+	$('#YUMS').text(({{city.farms}}*{{farm.pfood}} + {{city.labs}}*{{lab.pfood}} + {{city.studios}}*{{studio.pfood}} + {{city.barracks}}*{{barracks.pfood}})*{{character.food}});
+		$('#KNOWS').text(({{city.farms}}*{{farm.pscience}} + {{city.labs}}*{{lab.pscience}} + {{city.studios}}*{{studio.pscience}} + {{city.barracks}}*{{barracks.pscience}})*{{character.science}});
+		$('#GUNS').text(({{city.farms}}*{{farm.pmilitary}} + {{city.labs}}*{{lab.pmilitary}} + {{city.studios}}*{{studio.pmilitary}} + {{city.barracks}}*{{barracks.pmilitary}})*{{character.military}});
+		$('#BORES').text(({{city.farms}}*{{farm.part}} + {{city.labs}}*{{lab.part}} + {{city.studios}}*{{studio.part}} + {{city.barracks}}*{{barracks.part}})*{{character.arts}});
 
 
 	
 	});
 		
-	
+		
+		function getPersona(pID){
+			$.ajax({type: "GET",		
+	  		url:	"/civ/buyguy/",
+	  		data:	"persona="	+	pID,
+	  		success:	function(ret)	{	
+	  		obj = JSON.parse(ret)
+	  		console.log(obj);
+	  		if(obj.results[0]==1){
+	  		alert("Congratulations, you changed personna! ");
+	  		$('#TITLE').text(obj.results[1]);
+	  		$('#MONEY').text(obj.results[2]);
+	  		$('#POPULATION').text(obj.results[3]);
+	  		$('#WORKPOP').text(obj.results[4]);
+	  		$('#NOWORKPOP').text(obj.results[5]);
+	  		$('#FARMS').text(obj.results[6]);
+	  		$('#LABS').text(obj.results[7]);
+	  		$('#BARRACKS').text(obj.results[8]);
+	  		$('#STUDIOS').text(obj.results[9]);
+	  }
+	  else{
+	  alert("Failed to purchase a new identity!");
+	  }}});
+		
+		}
+		
+		
 	  function genAJAX(bID){
 	  $.ajax({type: "GET",		
 	  url:	"/civ/suggest/",
