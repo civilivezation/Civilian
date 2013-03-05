@@ -190,14 +190,9 @@ def	suggest(request):
 		city.barracks = city.barracks + 1
         if build == None:
             return HttpResponse(simplejson.dumps({"results":{'success':0}}))
-        print "Got to here!"
 	city.money = city.money-build.cost
-        print "1"
 	city.workingpopulation = city.workingpopulation+build.workers
-        print "2"
 	city.nonworkingpopulation = city.totalpopulation-city.workingpopulation
-        print "3"
 	city.save()
-        print "4"
         result = {'results':[1,character.title,city.money,city.totalpopulation,city.workingpopulation,city.nonworkingpopulation,city.farms,city.labs,city.barracks,city.studios]}
 	return HttpResponse(simplejson.dumps(result))
