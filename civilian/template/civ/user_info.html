@@ -43,7 +43,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="#">Civilian</a>
+            <a class="brand" href="/civ">Civilian</a>
             <div class="nav-collapse collapse">
               <ul class="nav">
                 <li class="active"><a href="#">Game Screen</a></li>
@@ -56,7 +56,7 @@
     				<li><button type="button" class="btn"onclick="genAJAX(3)">Buy lab!<BR> Cost 4000 <BR>Employees: 40 <BR> Credits + 400p/t <BR> Science + 20p/t </button></li>
 					<li><button type="button" class="btn"onclick="genAJAX(4)">Buy studio!<BR> Cost 2500 <BR>Employees: 70<BR> Credits +300 p/t <BR> Military + 25p/t </button></li>
 					<li><button type="button" class="btn"onclick="genAJAX(5)">Buy barracks!<BR> Cost 3200 <BR>Employees: 10<BR> Credits + 200p/t <BR> Art + 30p/t </button></li>
-
+					
                   </ul>
                 </li>
               </ul>
@@ -64,7 +64,7 @@
           </div>
         </div>
       </div>
-    <h1> Welcome, <span id="TITLE">{{character.title}}</span> {{city.name}} </h1>
+      <h1> Welcome, <span id="TITLE">{{character.title}}</span> {{city.name}} </h1>
     Money : <span id="MONEY">{{city.money}}</span><BR>
     Total Population :<span id="POPULATION">{{city.totalpopulation}}</span><BR>
 	Working Population : <span id="WORKPOP">{{city.workingpopulation}}</span><BR>
@@ -75,22 +75,9 @@
     Studios : <span id="STUDIOS">{{city.studios}}</span><BR>
     <BR>
     Character: {{character.name}} <BR>
-	</div>
-	</div>
 	
 	<script>
-	
-	  function update(building){
-	  $.getJSON("/civ/user_info/",{build:building}, function(json){
-	  alert("updated!");
-	  });
-	  }
-	  function addClickHandlers(){
-	  $("#incfarm").click(function(){update("Farm")});
-	  }
-	  $(document).ready(addClickHandlers);
-	  
-	  
+		  
 	  function genAJAX(bID){
 	  $.ajax({type: "GET",		
 	  url:	"/civ/suggest/",
@@ -112,16 +99,10 @@
 	  }
 	  else{
 	  alert("Failed!");
+	  }}});	
 	  }
-				}		
-			});	
-		}
 	</script>
 	</div>
-
-    <BR>
-
-	</BR>
 	{% else %}
     <P> NO USER EXIST!</P>
     {% endif %}
