@@ -1,21 +1,43 @@
 <HTML>
-  <HEADER><TITLE>CIVILIAN</TITLE></HEADER>
+  <html lang="en">
+  <script type="text/javascript" src="{{ STATIC_URL }}jquery.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}/bootstrap/js/bootstrap.js"></script>
+  <link href="{{ STATIC_URL }}/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <HEADER><meta charset="utf-8">
+    <title>Civilian</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="{{ STATIC_URL }}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+  </HEADER>
   <BODY>
     
     {% if user.is_authenticated %}
-    Welcome {{ user.name }} <BR>
+    <div class="hero-unit">
+    <h1>Welcome to Civilian.</h1>
+    <h4>Your story starts here.</h4>
     <A href="/civ/home">GO TO YOUR DASHBOARD</A> |
     <A href="/civ/game">GO TO YOUR CITY</A> |
     <A href="/civ/live">LIVE</A> |
 	<A href="/civ/user_info">INFO</A> |
     <A href="/civ/logout">LOGOUT</A> 
+    </div>
+    <BR>
+    
 
     {% else %}
-    WELCOME TO CIVILIAN <BR>
+	<div class="hero-unit">
+    <h1>Welcome to Civilian.</h1>
+    <h4>Your story starts here.</h4>
 
     <A href="/civ/login">LOGIN</A> |
     <A href="/civ/register">REGISTER</A> |
     <A href="/civ/live">LIVE</A>
+    </div>
     {% endif %}
 
   </BODY>

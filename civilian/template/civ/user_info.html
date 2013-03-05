@@ -1,19 +1,66 @@
 <HTML>
+<html lang="en">
   <script type="text/javascript" src="{{ STATIC_URL }}jquery.js"></script>
-  <HEADER><TITLE>LIVE PAGE</TITLE></HEADER>
+  <script type="text/javascript" src="{{ STATIC_URL }}/bootstrap/js/bootstrap.js"></script>
+  <link href="{{ STATIC_URL }}/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <HEADER><meta charset="utf-8">
+    <title>Civilian Info Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="{{ STATIC_URL }}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+  </HEADER>
   <BODY>
     {% if user %}
-    <P> HELLO {{character.title}} {{city.name}} </P>
+    <div id="wrap">
+	<div class="hero-unit">
+      <!-- Fixed navbar -->
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">Civilian</a>
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                <li class="active"><a href="#">Game Screen</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Buildings Shop <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                  	<li><button type="button" class="btn" onclick="genAJAX(1)">Buy residence!<BR> Cost 600 <BR> Population + 50</button></li>
+                  	<li class="divider"></li>
+ 					<li><button type="button" class="btn"onclick="genAJAX(2)">Buy farm!<BR> Cost 1000 <BR>Employees: 30 <BR> Credits + 200p/t <BR> Food + 20p/t </button></li>
+    				<li><button type="button" class="btn"onclick="genAJAX(3)">Buy lab!<BR> Cost 4000 <BR>Employees: 40 <BR> Credits + 400p/t <BR> Science + 20p/t </button></li>
+					<li><button type="button" class="btn"onclick="genAJAX(4)">Buy studio!<BR> Cost 2500 <BR>Employees: 70<BR> Credits +300 p/t <BR> Military + 25p/t </button></li>
+					<li><button type="button" class="btn"onclick="genAJAX(5)">Buy barracks!<BR> Cost 3200 <BR>Employees: 10<BR> Credits + 200p/t <BR> Art + 30p/t </button></li>
+
+                  </ul>
+                </li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </div>
+      </div>
+    <h1> Hello there {{character.title}} {{city.name}} </h1>
     Money : {{city.money}}<BR>
     Total Population : {{city.totalpopulation}}<BR>
 	Working Population : {{city.workingpopulation}}<BR>
 	Non-Working Population : {{city.nonworkingpopulation}}<BR>
-    Food : {{city.food}}<BR>
-    Science : {{city.science}}<BR>
-    Military : {{city.military}}<BR>
-    Arts : {{city.arts}}<BR>
+    No. of Farms : {{city.farms}}<BR>
+    No. of Labs : {{city.labs}}<BR>
+    No. of Barracks : {{city.barracks}}<BR>
+    No. of Art Studios : {{city.studios}}<BR>
     <BR>
     Character: {{character.name}} <BR>
+	</div>
+	</div>
 	
 	<script>
 	
@@ -39,17 +86,17 @@
 			});	
 		}
 	</script>
-	
-	<p> <span id="incfarm">BUY A FARM</span></p>
-    {% else %}
+	</div>
+
+    <BR>
+
+	</BR>
+	{% else %}
     <P> NO USER EXIST!</P>
     {% endif %}
-    <BR>
-    <button onclick="genAJAX(1)">Buy residence!</button>
-    <button onclick="genAJAX(2)">Buy farm!</button>
-    <button onclick="genAJAX(3)">Buy lab!</button>
-	<button onclick="genAJAX(4)">Buy studio!</button>
-	<button onclick="genAJAX(5)">Buy barracks!</button>
-    <A href="/civ"> JOIN THE GAME </A>
+    <A href="/civ"> Return to dashboard </A>
+    
+
+
   </BODY>
 </HTML>
