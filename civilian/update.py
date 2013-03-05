@@ -21,10 +21,10 @@ for user in Users.objects.all():
     acontrib = 0
     lcontrib = 0
     bcontrib = 0
-    profit = city.farms*farmProfit
-    profit = city.labs*labProfit
-    profit = city.barracks*barrackProfit
-    profit = city.studios*studioProfit
+    profit = profit + city.farms*farmProfit
+    profit = profit + city.labs*labProfit
+    profit = profit + city.barracks*barrackProfit
+    profit = profit + city.studios*studioProfit
     city.money = (character.money*profit)+city.money-city.totalpopulation
     print "Money: {0}".format(city.money)
     city.save()
