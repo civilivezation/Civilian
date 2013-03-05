@@ -159,36 +159,45 @@ def	suggest(request):
 	context = RequestContext(request)
 	user = Users.objects.get(user = request.user)
 	city = user.city
+        print city
 	population = city.totalpopulation
-	character = user.character	
+	character = user.character
 	btype = request.GET['build']
 	if btype == '1':
 		build = Building.objects.get(buildtype="House")
 		if city.money < build.cost or city.nonworkingpopulation < build.workers:
-			return HttpResponse("nothing. You're broke. Or don't have enough guys.")
+			return HttpResponse(simplejson.dumps({"results":{'success':0}}))
 		city.totalpopulation = city.totalpopulation+build.residents
 	if btype == '2':
 		build = Building.objects.get(buildtype="Farm")
 		if city.money < build.cost or city.nonworkingpopulation < build.workers:
-			return HttpResponse("nothing. You're broke. Or don't have enough guys.")
+			return HttpResponse(simplejson.dumps({"results":{'success':0}}))
 		city.farms = city.farms + 1
 	if btype == '3':
 		build = Building.objects.get(buildtype="Lab")
 		if city.money < build.cost or city.nonworkingpopulation < build.workers:
-			return HttpResponse("nothing. You're broke. Or don't have enough guys.")
+			return HttpResponse(simplejson.dumps({"results":{'success':0}}))
 		city.labs = city.labs + 1
 	if btype == '4':
 		build = Building.objects.get(buildtype="Studio")
 		if city.money < build.cost or city.nonworkingpopulation < build.workers:
-			return HttpResponse("nothing. You're broke. Or don't have enough guys.")
+			return HttpResponse(simplejson.dumps({"results":{'success':0}}))
 		city.studios = city.studios + 1
 	if btype == '5':
 		build = Building.objects.get(buildtype="Barracks")
 		if city.money < build.cost or city.nonworkingpopulation < build.workers:
-			return HttpResponse("nothing. You're broke. Or don't have enough guys.")
+                    return HttpResponse(simplejson.dumps({"results":{'success':0}}))
 		city.barracks = city.barracks + 1
-	city.money = city.money-build.cost	
+        if build == None:
+            return HttpResponse(simplejson.dumps({"results":{'success':0}}))
+        print "Got to here!"
+	city.money = city.money-build.cost
+        print "1"
 	city.workingpopulation = city.workingpopulation+build.workers
+        print "2"
 	city.nonworkingpopulation = city.totalpopulation-city.workingpopulation
+        print "3"
 	city.save()
-	return HttpResponse(build)
+        print "4"
+        result = {'results':[1,character.title,city.money,city.totalpopulation,city.workingpopulation,city.nonworkingpopulation,city.farms,city.labs,city.barracks,city.studios]}
+	return HttpResponse(simplejson.dumps(result))

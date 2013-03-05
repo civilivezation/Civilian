@@ -3,15 +3,15 @@
   <HEADER><TITLE>LIVE PAGE</TITLE></HEADER>
   <BODY>
     {% if user %}
-    <P> HELLO {{character.title}} {{city.name}} </P>
-    Money : {{city.money}}<BR>
-    Total Population : {{city.totalpopulation}}<BR>
-	Working Population : {{city.workingpopulation}}<BR>
-	Non-Working Population : {{city.nonworkingpopulation}}<BR>
-    Food : {{city.food}}<BR>
-    Science : {{city.science}}<BR>
-    Military : {{city.military}}<BR>
-    Arts : {{city.arts}}<BR>
+    <P> HELLO <span id="TITLE">{{character.title}}</span> {{city.name}} </P>
+    Money : <span id="MONEY">{{city.money}}</span><BR>
+    Total Population :<span id="POPULATION">{{city.totalpopulation}}</span><BR>
+	Working Population : <span id="WORKPOP">{{city.workingpopulation}}</span><BR>
+	Non-Working Population : <span id="NOWORKPOP">{{city.nonworkingpopulation}}</span><BR>
+    Food : <span id="FARMS">{{city.farms}}</span><BR>
+    Science : <span id="LABS">{{city.labs}}</span><BR>
+    Military : <span id="BARRACKS">{{city.barracks}}</span><BR>
+    Arts : <span id="STUDIOS">{{city.studios}}</span><BR>
     <BR>
     Character: {{character.name}} <BR>
 	
@@ -28,13 +28,28 @@
 	  $(document).ready(addClickHandlers);
 	  
 	  
-		function genAJAX(bID){
-			$.ajax({type: "GET",		
-				url:	"/civ/suggest/",		
-				data:	"build="	+	bID,		
-				success:	function(message)	{	
-					alert("Congratulations, you built a "+message)
-					window.location.reload(true);
+	  function genAJAX(bID){
+	  $.ajax({type: "GET",		
+	  url:	"/civ/suggest/",
+	  data:	"build="	+	bID,
+	  success:	function(ret)	{	
+	  obj = JSON.parse(ret)
+	  console.log(obj);
+	  if(obj.results[0]==1){
+	  alert("Congratulations, you built something! ");
+	  $('#TITLE').text(obj.results[1]);
+	  $('#MONEY').text(obj.results[2]);
+	  $('#POPULATION').text(obj.results[3]);
+	  $('#WORKPOP').text(obj.results[4]);
+	  $('#NOWORKPOP').text(obj.results[5]);
+	  $('#FARMS').text(obj.results[6]);
+	  $('#LABS').text(obj.results[7]);
+	  $('#BARRACKS').text(obj.results[8]);
+	  $('#STUDIOS').text(obj.results[9]);
+	  }
+	  else{
+	  alert("Failed!");
+	  }
 				}		
 			});	
 		}
