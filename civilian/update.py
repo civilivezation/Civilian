@@ -36,3 +36,5 @@ for user in Users.objects.all():
     print "Art Contribution:  {0}".format(acontrib)
     print "Lab Contribution:  {0}".format(lcontrib)
     print "Army Contribution: {0}".format(bcontrib)
+    fact.score = fact.score + fcontrib + acontrib + lcontrib + bcontrib
+    fact.save()
