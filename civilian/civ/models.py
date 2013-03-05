@@ -18,10 +18,10 @@ class City(models.Model):
     totalpopulation = models.IntegerField()
     workingpopulation = models.IntegerField()
     nonworkingpopulation = models.IntegerField()
-    food = models.IntegerField()
-    science = models.IntegerField()
-    military = models.IntegerField()
-    arts = models.IntegerField()
+    farms = models.IntegerField()
+    labs = models.IntegerField()
+    barracks = models.IntegerField()
+    studios = models.IntegerField()
 
     def __unicode__(self):
         return self.name

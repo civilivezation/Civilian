@@ -62,10 +62,10 @@ def register(request):
             city.totalpopulation = 0
             city.workingpopulation = 0
             city.nonworkingpopulation = 0
-            city.food = 0
-            city.science = 0
-            city.military = 0
-            city.arts = 0
+            city.farms = 0
+            city.labs = 0
+            city.barracks = 0
+            city.studios = 0
             city.save()
             ouruser.city = city
             ouruser.save()
@@ -162,29 +162,33 @@ def	suggest(request):
 	population = city.totalpopulation
 	character = user.character	
 	btype = request.GET['build']
-	#build = Building.objects.get(buildtype=btype)
 	if btype == '1':
-		#btype = "residents";
-		build = Building.objects.get(buildtype="House")
+	build = Building.objects.get(buildtype="House")
+		if city.money < build.cost or city.nonworkingpopulation < build.workers:
+			return HttpResponse("nothing. You're broke. Or don't have enough guys.")
+		city.totalpopulation = city.totalpopulation+build.residents
 	if btype == '2':
 		build = Building.objects.get(buildtype="Farm")
+		if city.money < build.cost or city.nonworkingpopulation < build.workers:
+			return HttpResponse("nothing. You're broke. Or don't have enough guys.")
+		city.farms = city.farms + 1
 	if btype == '3':
 		build = Building.objects.get(buildtype="Lab")
+		if city.money < build.cost or city.nonworkingpopulation < build.workers:
+			return HttpResponse("nothing. You're broke. Or don't have enough guys.")
+		city.labs = city.labs + 1
 	if btype == '4':
 		build = Building.objects.get(buildtype="Studio")
+		if city.money < build.cost or city.nonworkingpopulation < build.workers:
+			return HttpResponse("nothing. You're broke. Or don't have enough guys.")
+		city.studios = city.studios + 1
 	if btype == '5':
 		build = Building.objects.get(buildtype="Barracks")
-	if city.money < build.cost or city.nonworkingpopulation < build.workers:
-		response = HttpResponse(" nothing. You're broke. Or don't have enough guys.")
-	else:
-		city.money = city.money-build.cost
-		city.totalpopulation = city.totalpopulation+build.residents
-		city.workingpopulation = city.workingpopulation+build.workers
-		city.nonworkingpopulation = city.totalpopulation-city.workingpopulation
-		city.food = city.food+build.pfood
-		city.arts = city.arts+build.part
-		city.military = city.military+build.pmilitary
-		city.science = city.science+build.pscience
-		city.save()
-		response	=	HttpResponse(build)
-	return	response
+		if city.money < build.cost or city.nonworkingpopulation < build.workers:
+			return HttpResponse("nothing. You're broke. Or don't have enough guys.")
+		city.barracks = city.barracks + 1
+	city.money = city.money-build.cost	
+	city.workingpopulation = city.workingpopulation+build.workers
+	city.nonworkingpopulation = city.totalpopulation-city.workingpopulation
+	city.save()
+	return HttpResponse(build)
