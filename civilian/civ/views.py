@@ -152,7 +152,11 @@ def user_info(request):
                                          'population':population})
                 return HttpResponse(json,mimetype='application/json')
     context = RequestContext(request, {'user':user,'city':city,
-                                       'character':character,'population':population})
+                                       'character':character,'population':population,
+                                       'farm':Buildings.objects.get(buildtype="Farm"),
+                                       'lab':Buildings.objects.get(buildtype="Lab"),
+                                       'barracks':Buildings.objects.get(buildtype="Barracks"),
+                                       'studio':Buildings.objects.get(buildtype="Studio")})
     return render_to_response('civ/user_info.html',{},context)
 
 def	suggest(request):
