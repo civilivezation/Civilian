@@ -10,6 +10,10 @@
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
+	  .container{
+	  margin-top: 30px;
+	  width: 500px;
+	  }
     </style>
     <link href="{{ STATIC_URL }}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -18,7 +22,6 @@
    <BODY>
     {% if fact_list %}
     <div id="wrap">
-
       <!-- Fixed navbar -->
       <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
@@ -43,9 +46,27 @@
       <h1>{{fact.name}} - {{fact.members}} - {{fact.score}} </h1>
       {% endfor %}
     </UL>
+	<div class="container">
+	  <div class="progress active">
+		<div class="bar" style="width: 0%;"></div>
+	  </div>
+	</div>
     {% else %}
     <P> NO FACTIONS EXIST!</P>
     {% endif %}
     <A href="/civ"> Return to dashboard </A>
+	<script>
+	  var progress = setInterval(function() {
+      var $bar = $('.bar');
+      
+      if ($bar.width()==500) {
+      clearInterval(progress);
+      $('.progress').removeClass('active');
+      } else {
+      $bar.width($bar.width()+500);
+      }
+      $bar.text($bar.width()/5 + "%");
+	  }, 800);
+	</script>
   </BODY>
 </HTML
