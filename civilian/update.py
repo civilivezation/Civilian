@@ -15,13 +15,24 @@ studioContrib = [studio.pfood,studio.part,studio.pmilitary,studio.pscience]
 for user in Users.objects.all():
     city = user.city
     fact = user.fact
+    character = user.character
     profit = 0
-    factcontrib = 0
+    fcontrib = 0
+    acontrib = 0
+    lcontrib = 0
+    bcontrib = 0
     profit = city.farms*farmProfit
     profit = city.labs*labProfit
     profit = city.barracks*barrackProfit
     profit = city.studios*studioProfit
-    city.money = city.money+profit-city.totalpopulation
-    print city.money
+    city.money = (character.money*profit)+city.money-city.totalpopulation
+    print "Money: {0}".format(city.money)
     city.save()
-    factcontrib = c
+    fcontrib = city.farms*(farmContrib[0] + labContrib[0] + barrackContrib[0] + studioContrib[0])*character.food
+    acontrib = city.studios*(farmContrib[1] + labContrib[1] + barrackContrib[1] + studioContrib[1])*character.arts
+    lcontrib = city.labs*(farmContrib[3] + labContrib[3] + barrackContrib[3] + studioContrib[3])*character.science
+    bcontrib = city.barracks*(farmContrib[2] + labContrib[2] + barrackContrib[2] + studioContrib[2])*character.military
+    print "Food Contribution: {0}".format(fcontrib)
+    print "Art Contribution:  {0}".format(acontrib)
+    print "Lab Contribution:  {0}".format(lcontrib)
+    print "Army Contribution: {0}".format(bcontrib)
