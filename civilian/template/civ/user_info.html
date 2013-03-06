@@ -25,10 +25,10 @@
               <li class="nav-header">Building Store</li>
               <li><button type="button" class="btn" onclick="genAJAX(1)">Buy residence!<BR> Cost 600 <BR> Population + 50</button></li>
                   	<li class="divider"></li>
- 					<li><button type="button" class="btn"onclick="genAJAX(2)">Buy farm!<BR> Cost 1000 <BR>Employees: 30 <BR> Credits + 200p/t <BR> Food + 20p/t </button></li>
-    				<li><button type="button" class="btn"onclick="genAJAX(3)">Buy lab!<BR> Cost 4000 <BR>Employees: 40 <BR> Credits + 400p/t <BR> Science + 20p/t </button></li>
-					<li><button type="button" class="btn"onclick="genAJAX(4)">Buy studio!  <BR> Cost 3200 <BR>Employees: 10<BR> Credits + 200p/t <BR> Art + 30p/t </button></li>
-					<li><button type="button" class="btn"onclick="genAJAX(5)">Buy barracks!<BR> Cost 2500 <BR>Employees: 70<BR> Credits +300 p/t <BR> Military + 25p/t </button></li>
+ 					<li><button type="button" class="btn"onclick="genAJAX(2)">Buy farm!<BR> Cost 1000 <BR>Employees: 30 <BR> Money + 200p/t <BR> Food + 20p/t </button></li>
+    				<li><button type="button" class="btn"onclick="genAJAX(3)">Buy lab!<BR> Cost 4000 <BR>Employees: 40 <BR> Money + 400p/t <BR> Science + 20p/t </button></li>
+					<li><button type="button" class="btn"onclick="genAJAX(4)">Buy studio!  <BR> Cost 3200 <BR>Employees: 10<BR> Money + 200p/t <BR> Art + 30p/t </button></li>
+					<li><button type="button" class="btn"onclick="genAJAX(5)">Buy barracks!<BR> Cost 2500 <BR>Employees: 70<BR> Money +300 p/t <BR> Military + 25p/t </button></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -83,6 +83,7 @@
         </div>
       </div>
       <h1> Welcome, <span id="TITLE">{{character.title}}</span> {{city.name}} </h1>
+      <h2> Faction: {{faction.name}}</h2>
     Money : <span id="MONEY">{{city.money}}</span><BR>
     Total Population :<span id="POPULATION">{{city.totalpopulation}}</span><BR>
 	Working Population : <span id="WORKPOP">{{city.workingpopulation}}</span><BR>

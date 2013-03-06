@@ -192,8 +192,8 @@ def	suggest(request):
 		if city.money < build.cost or city.nonworkingpopulation < build.workers:
                     return HttpResponse(simplejson.dumps({"results":{'success':0}}))
 		city.barracks = city.barracks + 1
-        if build == None:
-            return HttpResponse(simplejson.dumps({"results":{'success':0}}))
+	if build == None:
+		return HttpResponse(simplejson.dumps({"results":{'success':0}}))
 	city.money = city.money-build.cost
 	city.workingpopulation = city.workingpopulation+build.workers
 	city.nonworkingpopulation = city.totalpopulation-city.workingpopulation
@@ -240,16 +240,20 @@ def	buyguy(request):
 		if city.money < char.cost:
 			return HttpResponse(simplejson.dumps({"results":{'success':0}}))
 		user.character = char
-	if btype == '6':
+	if btype == '7':
 		char = Character.objects.get(name="Emporer")
 		if city.money < char.cost:
 			return HttpResponse(simplejson.dumps({"results":{'success':0}}))
 		user.character = char
-        if build == None:
+	if btype == '8':
+		char = Character.objects.get(name="Civilian")
+		if city.money < char.cost:
+			return HttpResponse(simplejson.dumps({"results":{'success':0}}))
+		user.character = char
+        if char == None:
             return HttpResponse(simplejson.dumps({"results":{'success':0}}))
-	city.money = city.money-build.cost
-	city.workingpopulation = city.workingpopulation+build.workers
-	city.nonworkingpopulation = city.totalpopulation-city.workingpopulation
+	city.money = city.money-char.cost
+	city.save()
 	user.save()
         result = {'results':[1,character.title,city.money,city.totalpopulation,city.workingpopulation,city.nonworkingpopulation,city.farms,city.labs,city.barracks,city.studios]}
 	return HttpResponse(simplejson.dumps(result))

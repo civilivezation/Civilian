@@ -147,11 +147,11 @@ def user_info(request):
                 city.science = city.science+build.pscience
                 city.save()
                 print "I'm here"
-                json = simplejson.dumps({'user':user,'city':city,
+                json = simplejson.dumps({'user':user,'city':city, 'faction':user.fact,
                                          'character':character,
                                          'population':population})
                 return HttpResponse(json,mimetype='application/json')
-    context = RequestContext(request, {'user':user,'city':city,
+    context = RequestContext(request, {'user':user,'city':city, 'faction':user.fact,
                                        'character':character,'population':population,
                                        'farm':Building.objects.get(buildtype="Farm"),
                                        'lab':Building.objects.get(buildtype="Lab"),
