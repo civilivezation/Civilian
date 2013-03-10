@@ -23,11 +23,6 @@ def home(request):
     context = RequestContext(request,{})
     return HttpResponse(template.render(context))
 
-@login_required
-def game(request):
-    template = loader.get_template('civ/game.html')
-    context = RequestContext(request,{})
-    return HttpResponse(template.render(context))
 
 def register(request):
     context = RequestContext(request)
