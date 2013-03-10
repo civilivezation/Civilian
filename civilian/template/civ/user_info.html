@@ -141,14 +141,7 @@
 			
 			<script>
 			  $(window).load(function(){
-			  $('#INCOME').text((({{city.farms}}*{{farm.profit}} + {{city.labs}}*{{lab.profit}} + {{city.studios}}*{{studio.profit}} + {{city.barracks}}*{{barracks.profit}} - {{city.totalpopulation}})*{{character.money}}).toFixed(2));
-			  $('#YUMS').text((({{city.farms}}*{{farm.pfood}} + {{city.labs}}*{{lab.pfood}} + {{city.studios}}*{{studio.pfood}} + {{city.barracks}}*{{barracks.pfood}})*{{character.food}}).toFixed(2));
-			  $('#KNOWS').text((({{city.farms}}*{{farm.pscience}} + {{city.labs}}*{{lab.pscience}} + {{city.studios}}*{{studio.pscience}} + {{city.barracks}}*{{barracks.pscience}})*{{character.science}}).toFixed(2));
-			  $('#GUNS').text((({{city.farms}}*{{farm.pmilitary}} + {{city.labs}}*{{lab.pmilitary}} + {{city.studios}}*{{studio.pmilitary}} + {{city.barracks}}*{{barracks.pmilitary}})*{{character.military}}).toFixed(2));
-			  $('#BORES').text((({{city.farms}}*{{farm.part}} + {{city.labs}}*{{lab.part}} + {{city.studios}}*{{studio.part}} + {{city.barracks}}*{{barracks.part}})*{{character.arts}}).toFixed(2));
-			  
-			  
-			  
+			  updateStats();			  
 			  });
 			  
 			  
@@ -170,11 +163,7 @@
 	  		  $('#LABS').text(obj.results[7]);
 	  		  $('#BARRACKS').text(obj.results[8]);
 	  		  $('#STUDIOS').text(obj.results[9]);
-	  		 $('#INCOME').text((({{city.farms}}*{{farm.profit}} + {{city.labs}}*{{lab.profit}} + {{city.studios}}*{{studio.profit}} + {{city.barracks}}*{{barracks.profit}} - {{city.totalpopulation}})*{{character.money}}).toFixed(2));
-			  $('#YUMS').text((({{city.farms}}*{{farm.pfood}} + {{city.labs}}*{{lab.pfood}} + {{city.studios}}*{{studio.pfood}} + {{city.barracks}}*{{barracks.pfood}})*{{character.food}}).toFixed(2));
-			  $('#KNOWS').text((({{city.farms}}*{{farm.pscience}} + {{city.labs}}*{{lab.pscience}} + {{city.studios}}*{{studio.pscience}} + {{city.barracks}}*{{barracks.pscience}})*{{character.science}}).toFixed(2));
-			  $('#GUNS').text((({{city.farms}}*{{farm.pmilitary}} + {{city.labs}}*{{lab.pmilitary}} + {{city.studios}}*{{studio.pmilitary}} + {{city.barracks}}*{{barracks.pmilitary}})*{{character.military}}).toFixed(2));
-			  $('#BORES').text((({{city.farms}}*{{farm.part}} + {{city.labs}}*{{lab.part}} + {{city.studios}}*{{studio.part}} + {{city.barracks}}*{{barracks.part}})*{{character.arts}}).toFixed(2));
+			  updateStats();
 			  
 			  }
 			  else{
@@ -202,10 +191,25 @@
 			  $('#LABS').text(obj.results[7]);
 			  $('#BARRACKS').text(obj.results[8]);
 			  $('#STUDIOS').text(obj.results[9]);
+			  updateStats();
 			  }
 			  else{
 			  alert("Failed!");
 			  }}});	
+			  }
+
+			  function updateStats(){
+			  $.ajax({type: "GET",		
+			  url:	"/civ/updateStats/",
+			  success:	function(ret)	{	
+			  obj = JSON.parse(ret)
+			  console.log(obj);
+			  $('#INCOME').text(obj.income);
+			  $('#YUMS').text(obj.yums);
+			  $('#KNOWS').text(obj.knows);
+			  $('#GUNS').text(obj.guns);
+			  $('#BORES').text(obj.bores);
+			  }});	
 			  }
 			</script>
 			</div>	
@@ -219,11 +223,11 @@
 		  <div class="well sidebar-nav">
             <ul class="nav nav-list">
 			  <li class="nav-header">Current Earnings</li>
-			  Income per turn:<span id="INCOME">income</span><BR>
-			  Food per turn:<span id="YUMS">income</span><BR>
-			  Science per turn:<span id="KNOWS">income</span><BR>
-			  Military per turn:<span id="GUNS">income</span><BR>
-			  Art per turn:<span id="BORES">income</span><BR>
+			  Income per turn:<span id="INCOME"></span><BR>
+			  Food per turn:<span id="YUMS"></span><BR>
+			  Science per turn:<span id="KNOWS"></span><BR>
+			  Military per turn:<span id="GUNS"></span><BR>
+			  Art per turn:<span id="BORES"></span><BR>
 			  
             </ul>
 		  </div><!--/.well -->

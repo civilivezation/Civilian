@@ -94,7 +94,7 @@
 	  
 	  (function worker() {
 	  $.ajax({ type: "GET",
-      url: "/civ/updatelive", 
+      url: "/civ/updateLive", 
       success: function(ret) {
 	  obj = JSON.parse(ret);
 	  $('.Atotal').width(obj.total.A+"%").text("A: " + Math.round(obj.total.A*100)/100+"%");
