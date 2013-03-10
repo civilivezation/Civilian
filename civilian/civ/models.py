@@ -7,6 +7,10 @@ class Faction(models.Model):
     name = models.CharField(max_length=60,unique=True)
     members = models.IntegerField()
     score = models.IntegerField()
+    food = models.IntegerField()
+    art = models.IntegerField()
+    military = models.IntegerField()
+    science = models.IntegerField()
     colour = models.CharField(max_length=60)
 
     def __unicode__(self):

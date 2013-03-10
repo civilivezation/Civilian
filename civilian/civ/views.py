@@ -59,10 +59,10 @@ def register(request):
             city = cform.save(commit=False)
             city.name = user.username
             city.money = 2000
-            city.totalpopulation = 0
-            city.workingpopulation = 0
+            city.totalpopulation = 30
+            city.workingpopulation = 30
             city.nonworkingpopulation = 0
-            city.farms = 0
+            city.farms = 1
             city.labs = 0
             city.barracks = 0
             city.studios = 0
@@ -265,9 +265,16 @@ def	buyguy(request):
 
 def updateLive(request):
     context = RequestContext(request)
-    newInfo = {}
+    newInfo = {"total":{},"food":{},"science":{},"military":{},"art":{}}
     totalScore = Faction.objects.aggregate(Sum('score'))
+    totalFood = Faction.objects.aggregate(Sum('food'))
+    totalScience = Faction.objects.aggregate(Sum('science'))
+    totalMilitary = Faction.objects.aggregate(Sum('military'))
+    totalArt = Faction.objects.aggregate(Sum('art'))
     for fact in Faction.objects.all():
-        newInfo[fact.name]=fact.score*100.0/totalScore["score__sum"]
-    print newInfo
+        newInfo['total'][fact.name]=fact.score*100.0/totalScore["score__sum"]
+        newInfo['food'][fact.name]=fact.food*100.0/totalFood["food__sum"]
+        newInfo['science'][fact.name]=fact.science*100.0/totalScience["science__sum"]
+        newInfo['military'][fact.name]=fact.military*100.0/totalMilitary["military__sum"]
+        newInfo['art'][fact.name]=fact.art*100.0/totalArt["art__sum"]
     return HttpResponse(simplejson.dumps(newInfo))

@@ -36,5 +36,9 @@ for user in Users.objects.all():
     print "Art Contribution:  {0}".format(acontrib)
     print "Lab Contribution:  {0}".format(lcontrib)
     print "Army Contribution: {0}".format(bcontrib)
-    fact.score = fact.score + fcontrib + 2*acontrib + 3*lcontrib + 4*bcontrib
+    fact.score = fact.score + fcontrib + 2*acontrib + 4*bcontrib + 8*lcontrib
+    fact.food = fact.food + fcontrib
+    fact.art = fact.art + acontrib
+    fact.military = fact.military + bcontrib
+    fact.science = fact.science + lcontrib
     fact.save()

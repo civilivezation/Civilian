@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
       body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        padding-top: 40px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
 	  .progress{
 	  margin-top: 30px;
-	  width: 800px;
+	  width: 1000px;
 	  height: 40px;
 	  }
     </style>
@@ -43,10 +43,36 @@
       </div>
 	</div>
 	<div class="container">
-	  <h1> FACTION TOTAL POINTS </h1>
+	  <div class="hero-unit">
+		<h1> FACTION TOTAL POINTS </h1>
+		<div class="progress active progress-striped">
+		  {% for fact in fact_list %}
+		  <div class="{{fact.name}}total {{fact.bar}}" style="width:{{fact.perc}}%;"><p class="lead">{{fact.name}}: {{fact.score}}</p></div>
+		  {% endfor %}
+		</div>
+	  </div>
+	  <h2> FACTION FARM POINTS </h2>
 	  <div class="progress active progress-striped">
 		{% for fact in fact_list %}
-		<div class="{{fact.bar}}" style="width:{{fact.perc}}%;"><p class="lead">{{fact.name}}: {{fact.score}}</p></div>
+		<div class="{{fact.name}}food {{fact.bar}}" style="width:{{fact.perc}}%;"><p class="lead">{{fact.name}}: {{fact.score}}</p></div>
+		{% endfor %}
+	  </div>
+	  <h2> FACTION ART POINTS </h2>
+	  <div class="progress active progress-striped">
+		{% for fact in fact_list %}
+		<div class="{{fact.name}}art {{fact.bar}}" style="width:{{fact.perc}}%;"><p class="lead">{{fact.name}}: {{fact.score}}</p></div>
+		{% endfor %}
+	  </div>
+	  <h2> FACTION MILITARY POINTS </h2>
+	  <div class="progress active progress-striped">
+		{% for fact in fact_list %}
+		<div class="{{fact.name}}military {{fact.bar}}" style="width:{{fact.perc}}%;"><p class="lead">{{fact.name}}: {{fact.score}}</p></div>
+		{% endfor %}
+	  </div>
+	  <h2> FACTION SCIENCE POINTS </h2>
+	  <div class="progress active progress-striped">
+		{% for fact in fact_list %}
+		<div class="{{fact.name}}lab {{fact.bar}}" style="width:{{fact.perc}}%;"><p class="lead">{{fact.name}}: {{fact.score}}</p></div>
 		{% endfor %}
 	  </div>
 	</div>
@@ -71,10 +97,29 @@
       url: "/civ/updatelive", 
       success: function(ret) {
 	  obj = JSON.parse(ret);
+	  $('.Atotal').width(obj.total.A+"%").text("A: " + Math.round(obj.total.A*100)/100+"%");
+	  $('.Btotal').width(obj.total.B+"%").text("B: " + Math.round(obj.total.B*100)/100+"%");
+	  $('.Ctotal').width(obj.total.C+"%").text("C: " + Math.round(obj.total.C*100)/100+"%");
+	  $('.Dtotal').width(obj.total.D+"%").text("D: " + Math.round(obj.total.D*100)/100+"%");
+	  $('.Afood').width(obj.food.A+"%").text("A: " + Math.round(obj.food.A*100)/100+"%");
+	  $('.Bfood').width(obj.food.B+"%").text("B: " + Math.round(obj.food.B*100)/100+"%");
+	  $('.Cfood').width(obj.food.C+"%").text("C: " + Math.round(obj.food.C*100)/100+"%");
+	  $('.Dfood').width(obj.food.D+"%").text("D: " + Math.round(obj.food.D*100)/100+"%");
+	  $('.Aart').width(obj.art.A+"%").text("A: " + Math.round(obj.art.A*100)/100+"%");
+	  $('.Bart').width(obj.art.B+"%").text("B: " + Math.round(obj.art.B*100)/100+"%");
+	  $('.Cart').width(obj.art.C+"%").text("C: " + Math.round(obj.art.C*100)/100+"%");
+	  $('.Dart').width(obj.art.D+"%").text("D: " + Math.round(obj.art.D*100)/100+"%");
+	  $('.Amilitary').width(obj.military.A+"%").text("A: " + Math.round(obj.military.A*100)/100+"%");
+	  $('.Bmilitary').width(obj.military.B+"%").text("B: " + Math.round(obj.military.B*100)/100+"%");
+	  $('.Cmilitary').width(obj.military.C+"%").text("C: " + Math.round(obj.military.C*100)/100+"%");
+	  $('.Dmilitary').width(obj.military.D+"%").text("D: " + Math.round(obj.military.D*100)/100+"%");
+	  $('.Alab').width(obj.science.A+"%").text("A: " + Math.round(obj.science.A*100)/100+"%");
+	  $('.Blab').width(obj.science.B+"%").text("B: " + Math.round(obj.science.B*100)/100+"%");
+	  $('.Clab').width(obj.science.C+"%").text("C: " + Math.round(obj.science.C*100)/100+"%");
+	  $('.Dlab').width(obj.science.D+"%").text("D: " + Math.round(obj.science.D*100)/100+"%");
       },
       complete: function() {
-      // Schedule the next request when the current one's complete
-      setTimeout(worker, 500);
+      setTimeout(worker, 1000);
       }
 	  });
 	  })();
