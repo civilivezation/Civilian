@@ -15,4 +15,5 @@ urlpatterns = patterns('',
                        url(r'^suggest/',views.suggest),
                        url(r'^buyguy/',views.buyguy),
                        url(r'^updateLive/',views.updateLive),
+                       url(r'^updateStats/',views.updateStats),
 )
