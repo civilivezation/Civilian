@@ -278,3 +278,16 @@ def updateLive(request):
         newInfo['military'][fact.name]=fact.military*100.0/totalMilitary["military__sum"]
         newInfo['art'][fact.name]=fact.art*100.0/totalArt["art__sum"]
     return HttpResponse(simplejson.dumps(newInfo))
+
+def updateStats(request):
+    context = RequestContext(request)
+    user = Users.objects.get(user=request.user)
+    city = user.city
+    char = user.character
+    farm = Buildings.objects.get(buildtype="Farm")
+    studio = Buildings.objects.get(buildtype="Studio")
+    barracks = Buildings.objects.get(buildtype="Barracks")
+    lab = Buildings.objects.get(buildtype="Lab")
+    newInfo = {}
+    newInfo["income"]=city.money+((city.farms*farm.profit)+(city.studios*studio.profit)+(city.barracks*barracks.profit)+(city.labs*lab.profit)-city.totalpopulation)*char.money
+    return HttpResponse(simplejson.dumps(newInfo))
