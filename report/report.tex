@@ -13,28 +13,28 @@
 
 \begin{document}
 \newcommand{\todo}[1]{\textcolor{red}{#1}}
-\def\newblock{\hskip .11em plus .33em minus .07em}
+%\def\newblock{\hskip .11em plus .33em minus .07em}
 
-\conferenceinfo{DIM3} {2010, Glasgow, UK} 
-\CopyrightYear{2010}
-\clubpenalty=10000
-\widowpenalty = 10000
+%\conferenceinfo{DIM3} {2010, Glasgow, UK} 
+%\CopyrightYear{2010}
+%\clubpenalty=10000
+%\widowpenalty = 10000
 
 \title{{Report Name}}
 
-\numberofauthors{1}
-\author{
-\alignauthor
-Author Names\\
-	   \affaddr{Team D}\\
-      \affaddr{Dim3}\\
-      \affaddr{1003648, 1003019, 1002253}\\
-             \email{\{ Fiona Buyers, Chris James, Ryan Wells\}@students.glasgow.ac.uk }
-}
+%\numberofauthors{1}
+%\author{
+%\alignauthor
+%Author Names\\
+%	   \affaddr{Team D}\\
+%      \affaddr{Dim3}\\
+%      \affaddr{Fiona Buyers, Chris James, Ryan Wells}\\
+%             \email{\{1003648b, 1003019j, 1002253w \}@students.glasgow.ac.uk }
+%}
 \maketitle
 
 \begin{abstract}
-Provide a concise summary of the design of the application
+Provide a concise summary of the design of the application. i wish i was dead
 
 \end{abstract}
 
@@ -42,7 +42,7 @@ Provide a concise summary of the design of the application
 
 \subsection{Application Purpose}
 
-The application is a multiplayer game stuff. When users register they will be randomly assigned to one of four factions. Within the faction the user will aim to increase not only their individual score, but the score of their faction. The user will have to buy buildings to expand their "city" and increase their population. There will be several different kinds of buildings; farms, barracks, studios and labs; and each will gain the user points in a different category (food, military, art and science, respectively) and all buildings will earn the user money. Crisis events will occur throughout the game which will cause buildings of a certain kind to become less or more effective, for example famine or war, so in order for the user to have a successful city and gain the maximum number of points, the city they have created should be fairly well balanced. More accomplised users will be able to unlock different personas when they have enough money. These personas will give the user different multipliers for each of the points categories which will affect the amount earned from each kind of building.
+The application is a multiplayer game stuff. When users register they will be randomly assigned to one of four factions. Within the faction the user will aim to increase not only their individual score, but the score of their faction. The user will have to buy buildings to expand their `city' and increase their population. There will be several different kinds of buildings; farms, barracks, studios and labs; and each will gain the user points in a different category (food, military, art and science, respectively) and all buildings will earn the user money. Crisis events will occur throughout the game which will cause buildings of a certain kind to become less or more effective, for example famine or war, so in order for the user to have a successful city and gain the maximum number of points, the city they have created should be fairly well balanced. More accomplised users will be able to unlock different personas when they have enough money. These personas will give the user different multipliers for each of the points categories which will affect the amount earned from each kind of building.
 
 \subsection{Functional Requirements}
 
@@ -85,9 +85,32 @@ The application is a multiplayer game stuff. When users register they will be ra
 \end{itemize}
 
 \section{Client Interface}
+
+\verticalspace
+
+the thing shows the main page of the thing which has lots of stuff, blah blah blah dribble dribble arse
+
+\begin{figure}[!htbp]
+  \caption{\textit{Main Page}}
+  \begin{center}
+		\includegraphics[scale=0.25]{img/w3.png}
+  \end{center}
+\end{figure}
+
+the other one shows more stuff that is a lie.
+
+\begin{figure}[!htbp]
+  \caption{\textit{Game Page}}
+  \begin{center}
+		\includegraphics[scale=0.25]{img/w4.png}
+  \end{center}
+\end{figure}
+
+
+
 \begin{itemize}
 
-\item	Draw a wireframe of the user interface - have
+\item	Draw a wireframe of the user interface 
 
 \item	this may require several wireframes depending on the complexity of the application and the interfaces
 
@@ -102,7 +125,7 @@ game page - shows the current number of buildings each user has, displays their 
 \item	i.e. Label key input and output components: describe them.
 
 \item	Provide a Walkthrough and explain the user interactions with application. 
-\item	i.e. use cases
+\item	i.e. use cases AAAAAAAAARGH
 
 \item	Describe the interactions associated with the dynamic components on the user interface.
 
@@ -123,14 +146,14 @@ game page - shows the current number of buildings each user has, displays their 
 \section{Application Architecture}
 \begin{itemize}
 
-\item	N-Teir Architecture Diagram
+\item	N-Teir Architecture Diagram - chris has this
 
 \item	i.e. data flow diagram between the interface/client, middle ware, and backend services/data repos
 
 \item	Describe the data model i.e. what data needs to be stored or persisted by the application?
 
 \item	What are the relationships within the data model.
-\item	i.e. use ER diagram and explain.
+\item	i.e. use ER diagram and explain. - chris 
 
 \item	Describe the backend services used (if any).
 
@@ -145,7 +168,6 @@ game page - shows the current number of buildings each user has, displays their 
 \begin{itemize}
 
 \item	On the architecture diagram, Identify and label the main messages that will be parsed through the application.
-
 \item	or alternatively (and preferably) include sequence diagrams to denote the sequence of communications parse between clients and servers.
 
 \item	Describe the messages that are parsed back and forth through the application.
@@ -166,6 +188,8 @@ game page - shows the current number of buildings each user has, displays their 
 \begin{itemize}
 
 \item Views - What are the main views that you have implemented and what do they do?
+
+
 
 \item URL Mapping Schema - what is your URL mapping and schema?
 
