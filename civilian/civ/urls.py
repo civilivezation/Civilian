@@ -14,5 +14,5 @@ urlpatterns = patterns('',
                        url(r'^user_info/$',views.user_info,name='user_info'),
                        url(r'^suggest/',views.suggest),
                        url(r'^buyguy/',views.buyguy),
-                       url(r'^updatelive/',views.updateLive),
+                       url(r'^updateLive/',views.updateLive),
 )
