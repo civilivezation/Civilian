@@ -12,7 +12,8 @@
       }
 	  .progress{
 	  margin-top: 30px;
-	  width: 500px;
+	  width: 800px;
+	  height: 40px;
 	  }
     </style>
     <link href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
@@ -40,34 +41,45 @@
           </div>
         </div>
       </div>
-    <h1> FACTION - MEMBERS - SCORE</h1>
-    <UL> 
-      {% for fact in fact_list %}
-      <h1>{{fact.name}} - {{fact.members}} - {{fact.score}} </h1>
-      {% endfor %}
-    </UL>
+	</div>
 	<div class="container">
-	  <div class="progress active">
-		<div class="bar blue" style="width: 0%;"></div>
-		<div class="bar bar-danger" style="width: 0%;"></div>
+	  <h1> FACTION TOTAL POINTS </h1>
+	  <div class="progress active progress-striped">
+		{% for fact in fact_list %}
+		<div class="{{fact.bar}}" style="width:{{fact.perc}}%;"><p class="lead">{{fact.name}}: {{fact.score}}</p></div>
+		{% endfor %}
 	  </div>
 	</div>
     {% else %}
     <P> NO FACTIONS EXIST!</P>
     {% endif %}
-    <A href="/civ"> Return to dashboard </A>
 	<script>
 	  var progress = setInterval(function() {
-      var $bar = $('.blue');
-      
-      if ($bar.width()==250) {
-      clearInterval(progress);
-      $('.progress').removeClass('active');
-      } else {
-      $bar.width($bar.width()+50);
+	  var $bar = $('.blue');
+	  
+	  if ($bar.width()==250) {
+	  clearInterval(progress);
+	  $('.progress').removeClass('active');
+	  } else {
+	  $bar.width($bar.width()+50);
 	  }
-      $bar.text($bar.width()*2/5 + "%");
+	  $bar.text($bar.width()*2/5 + "%");
 	  }, 800);
+	  
+	  (function worker() {
+	  $.ajax({ type: "GET",
+      url: "/civ/updatelive", 
+      success: function(ret) {
+	  obj = JSON.parse(ret);
+      },
+      complete: function() {
+      // Schedule the next request when the current one's complete
+      setTimeout(worker, 500);
+      }
+	  });
+	  })();
+	  
 	</script>
-  </BODY>
-</HTML
+   </BODY>
+</HTML>   
+   

@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from civ.models import *
-from django.db.models import Min
+from django.db.models import Min, Sum
 from django.utils import simplejson
 from django.utils import *
 
@@ -116,6 +116,11 @@ def user_logout(request):
 def live(request):
     template = loader.get_template('civ/live.html')
     fact_list = Faction.objects.all()
+    totalScore = Faction.objects.aggregate(Sum('score'))
+    barColours = {'red':"bar bar-danger",'blue':"bar",'green':"bar bar-success",'yellow':"bar bar-warning"}
+    for fact in fact_list:
+        fact.perc=fact.score*100.0/totalScore["score__sum"]
+        fact.bar=barColours[fact.colour]
     context = RequestContext(request, {'fact_list': fact_list})
     return HttpResponse(template.render(context))
 
@@ -257,3 +262,12 @@ def	buyguy(request):
 	user.save()
         result = {'results':[1,character.title,city.money,city.totalpopulation,city.workingpopulation,city.nonworkingpopulation,city.farms,city.labs,city.barracks,city.studios]}
 	return HttpResponse(simplejson.dumps(result))
+
+def updateLive(request):
+    context = RequestContext(request)
+    newInfo = {}
+    totalScore = Faction.objects.aggregate(Sum('score'))
+    for fact in Faction.objects.all():
+        newInfo[fact.name]=fact.score*100.0/totalScore["score__sum"]
+    print newInfo
+    return HttpResponse(simplejson.dumps(newInfo))

@@ -1,10 +1,12 @@
 from civ.models import Faction, Building, Character
 
-F = Faction(name="A",members=0,score=0)
+F = Faction(name="A",members=0,score=0,colour="red")
 F.save()
-F = Faction(name="B",members=0,score=0)
+F = Faction(name="B",members=0,score=0,colour="blue")
 F.save()
-F = Faction(name="C",members=0,score=0)
+F = Faction(name="C",members=0,score=0,colour="green")
+F.save()
+F = Faction(name="D",members=0,score=0,colour="yellow")
 F.save()
 B = Building(buildtype="House",cost=600,profit=-50,residents=50,
              workers=0,pfood=0,part=0,pmilitary=0,pscience=0)
