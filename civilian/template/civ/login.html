@@ -8,13 +8,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
       body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        padding-top: 40px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
     </style>
     <link href="{{ STATIC_URL }}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
   </HEADER>
   <BODY>
+  <div id="wrap">
+      <!-- Fixed navbar -->
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="/civ">Civilian</a>
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                <li class="active"><a href="#">Login</a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </div>
+      </div>
     {% if user.is_authenticated %}
     <A href="/civ/home"> GO TO YOUR CITY.</A>
     {% else %}
@@ -32,7 +51,11 @@
       <br/>
       <INPUT type="submit" name="submit" value="submit" />
     </FORM>
+
+	    
+
     </div>
+    <img src="{{ STATIC_URL }}/imgs/group.gif" alt="Civilian Logo" height="1024" width="1024"" align="centre">
     {% endif %}
   </BODY>
 </HTML>
