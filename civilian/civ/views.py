@@ -125,7 +125,7 @@ def live(request):
     return HttpResponse(template.render(context))
 
 @login_required
-def user_info(request):
+def game(request):
     context = RequestContext(request)
     user = Users.objects.get(user = request.user)
     city = user.city
@@ -162,7 +162,7 @@ def user_info(request):
                                        'lab':Building.objects.get(buildtype="Lab"),
                                        'barracks':Building.objects.get(buildtype="Barracks"),
                                        'studio':Building.objects.get(buildtype="Studio")})
-    return render_to_response('civ/user_info.html',{},context)
+    return render_to_response('civ/game.html',{},context)
 
 def	suggest(request):
 	context = RequestContext(request)
@@ -284,10 +284,14 @@ def updateStats(request):
     user = Users.objects.get(user=request.user)
     city = user.city
     char = user.character
-    farm = Buildings.objects.get(buildtype="Farm")
-    studio = Buildings.objects.get(buildtype="Studio")
-    barracks = Buildings.objects.get(buildtype="Barracks")
-    lab = Buildings.objects.get(buildtype="Lab")
+    farm = Building.objects.get(buildtype="Farm")
+    studio = Building.objects.get(buildtype="Studio")
+    barracks = Building.objects.get(buildtype="Barracks")
+    lab = Building.objects.get(buildtype="Lab")
     newInfo = {}
-    newInfo["income"]=city.money+((city.farms*farm.profit)+(city.studios*studio.profit)+(city.barracks*barracks.profit)+(city.labs*lab.profit)-city.totalpopulation)*char.money
+    newInfo["income"]=((city.farms*farm.profit)+(city.studios*studio.profit)+(city.barracks*barracks.profit)+(city.labs*lab.profit)-city.totalpopulation)*char.money
+    newInfo["yums"]=((city.farms*farm.pfood)+(city.studios*studio.pfood)+(city.barracks*barracks.pfood)+(city.labs*lab.pfood))*char.food
+    newInfo["knows"]=((city.farms*farm.pscience)+(city.studios*studio.pscience)+(city.barracks*barracks.pscience)+(city.labs*lab.pscience))*char.science
+    newInfo["guns"]=((city.farms*farm.pmilitary)+(city.studios*studio.pmilitary)+(city.barracks*barracks.pmilitary)+(city.labs*lab.pmilitary))*char.military
+    newInfo["bores"]=((city.farms*farm.part)+(city.studios*studio.part)+(city.barracks*barracks.part)+(city.labs*lab.part))*char.arts
     return HttpResponse(simplejson.dumps(newInfo))

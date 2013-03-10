@@ -36,7 +36,30 @@
             <div class="nav-collapse collapse">
               <ul class="nav">
                 <li class="active"><a href="#">Live Screen</a></li>
+                {% if user.is_authenticated %}
+                <li class="inactive"><a href="/civ/game">Game</a></li>
               </ul>
+              
+              <form class="navbar-form pull-right">
+					{% if faction.colour == "red" %}
+						
+					{% elif faction.colour == "blue" %}
+						
+					{% elif faction.colour == "yellow" %}
+						
+					{% elif faction.colour = "green" %}
+						
+					{% endif %}
+					<a type="button" class="btn btn-info" href="/civ/logout">Logout </a>
+ 
+					</form>
+			{% else %}
+			</ul>
+			<form class="navbar-form pull-right">
+				<a type="button" class="btn btn-success" href="/civ/register">Register</a>
+				<a type="button" class="btn btn-info" href="/civ/login">Login </a>
+ 			</form>
+			{% endif %}
             </div><!--/.nav-collapse -->
           </div>
         </div>
@@ -94,7 +117,7 @@
 	  
 	  (function worker() {
 	  $.ajax({ type: "GET",
-      url: "/civ/updatelive", 
+      url: "/civ/updateLive", 
       success: function(ret) {
 	  obj = JSON.parse(ret);
 	  $('.Atotal').width(obj.total.A+"%").text("A: " + Math.round(obj.total.A*100)/100+"%");
