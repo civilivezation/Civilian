@@ -125,7 +125,7 @@ def live(request):
     return HttpResponse(template.render(context))
 
 @login_required
-def user_info(request):
+def game(request):
     context = RequestContext(request)
     user = Users.objects.get(user = request.user)
     city = user.city
@@ -162,7 +162,7 @@ def user_info(request):
                                        'lab':Building.objects.get(buildtype="Lab"),
                                        'barracks':Building.objects.get(buildtype="Barracks"),
                                        'studio':Building.objects.get(buildtype="Studio")})
-    return render_to_response('civ/user_info.html',{},context)
+    return render_to_response('civ/game.html',{},context)
 
 def	suggest(request):
 	context = RequestContext(request)

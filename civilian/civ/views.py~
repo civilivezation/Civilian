@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from civ.models import *
-from django.db.models import Min
+from django.db.models import Min, Sum
 from django.utils import simplejson
 from django.utils import *
 
@@ -59,10 +59,10 @@ def register(request):
             city = cform.save(commit=False)
             city.name = user.username
             city.money = 2000
-            city.totalpopulation = 0
-            city.workingpopulation = 0
+            city.totalpopulation = 30
+            city.workingpopulation = 30
             city.nonworkingpopulation = 0
-            city.farms = 0
+            city.farms = 1
             city.labs = 0
             city.barracks = 0
             city.studios = 0
@@ -116,6 +116,11 @@ def user_logout(request):
 def live(request):
     template = loader.get_template('civ/live.html')
     fact_list = Faction.objects.all()
+    totalScore = Faction.objects.aggregate(Sum('score'))
+    barColours = {'red':"bar bar-danger",'blue':"bar",'green':"bar bar-success",'yellow':"bar bar-warning"}
+    for fact in fact_list:
+        fact.perc=fact.score*100.0/totalScore["score__sum"]
+        fact.bar=barColours[fact.colour]
     context = RequestContext(request, {'fact_list': fact_list})
     return HttpResponse(template.render(context))
 
@@ -147,11 +152,11 @@ def user_info(request):
                 city.science = city.science+build.pscience
                 city.save()
                 print "I'm here"
-                json = simplejson.dumps({'user':user,'city':city,
+                json = simplejson.dumps({'user':user,'city':city, 'faction':user.fact,
                                          'character':character,
                                          'population':population})
                 return HttpResponse(json,mimetype='application/json')
-    context = RequestContext(request, {'user':user,'city':city,
+    context = RequestContext(request, {'user':user,'city':city, 'faction':user.fact,
                                        'character':character,'population':population,
                                        'farm':Building.objects.get(buildtype="Farm"),
                                        'lab':Building.objects.get(buildtype="Lab"),
@@ -257,3 +262,36 @@ def	buyguy(request):
 	user.save()
         result = {'results':[1,character.title,city.money,city.totalpopulation,city.workingpopulation,city.nonworkingpopulation,city.farms,city.labs,city.barracks,city.studios]}
 	return HttpResponse(simplejson.dumps(result))
+
+def updateLive(request):
+    context = RequestContext(request)
+    newInfo = {"total":{},"food":{},"science":{},"military":{},"art":{}}
+    totalScore = Faction.objects.aggregate(Sum('score'))
+    totalFood = Faction.objects.aggregate(Sum('food'))
+    totalScience = Faction.objects.aggregate(Sum('science'))
+    totalMilitary = Faction.objects.aggregate(Sum('military'))
+    totalArt = Faction.objects.aggregate(Sum('art'))
+    for fact in Faction.objects.all():
+        newInfo['total'][fact.name]=fact.score*100.0/totalScore["score__sum"]
+        newInfo['food'][fact.name]=fact.food*100.0/totalFood["food__sum"]
+        newInfo['science'][fact.name]=fact.science*100.0/totalScience["science__sum"]
+        newInfo['military'][fact.name]=fact.military*100.0/totalMilitary["military__sum"]
+        newInfo['art'][fact.name]=fact.art*100.0/totalArt["art__sum"]
+    return HttpResponse(simplejson.dumps(newInfo))
+
+def updateStats(request):
+    context = RequestContext(request)
+    user = Users.objects.get(user=request.user)
+    city = user.city
+    char = user.character
+    farm = Buildings.objects.get(buildtype="Farm")
+    studio = Buildings.objects.get(buildtype="Studio")
+    barracks = Buildings.objects.get(buildtype="Barracks")
+    lab = Buildings.objects.get(buildtype="Lab")
+    newInfo = {}
+    newInfo["income"]=((city.farms*farm.profit)+(city.studios*studio.profit)+(city.barracks*barracks.profit)+(city.labs*lab.profit)-city.totalpopulation)*char.money
+    newInfo["yums"]=((city.farms*farm.pfood)+(city.studios*studio.pfood)+(city.barracks*barracks.pfood)+(city.labs*lab.pfood))*char.food
+    newInfo["knows"]=((city.farms*farm.pscience)+(city.studios*studio.pscience)+(city.barracks*barracks.pscience)+(city.labs*lab.pscience))*char.science
+    newInfo["guns"]=((city.farms*farm.pmilitary)+(city.studios*studio.pmilitary)+(city.barracks*barracks.pmilitary)+(city.labs*lab.pmilitary))*char.military
+    newInfo["bores"]=((city.farms*farm.part)+(city.studios*studio.part)+(city.barracks*barracks.part)+(city.labs*lab.part))*char.arts
+    return HttpResponse(simplejson.dumps(newInfo))
