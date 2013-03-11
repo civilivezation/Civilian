@@ -13,24 +13,24 @@
 
 \begin{document}
 \newcommand{\todo}[1]{\textcolor{red}{#1}}
-%\def\newblock{\hskip .11em plus .33em minus .07em}
+\def\newblock{\hskip .11em plus .33em minus .07em}
 
-%\conferenceinfo{DIM3} {2010, Glasgow, UK} 
-%\CopyrightYear{2010}
-%\clubpenalty=10000
-%\widowpenalty = 10000
+\conferenceinfo{DIM3} {2010, Glasgow, UK} 
+\CopyrightYear{2010}
+\clubpenalty=10000
+\widowpenalty = 10000
 
 \title{{Report Name}}
 
-%\numberofauthors{1}
-%\author{
-%\alignauthor
-%Author Names\\
-%	   \affaddr{Team D}\\
-%      \affaddr{Dim3}\\
-%      \affaddr{Fiona Buyers, Christopher James, Ryan Wells}\\
-%             \email{\{1003648b, 1003019j, 1002253w \}@students.glasgow.ac.uk }
-%}
+\numberofauthors{1}
+\author{
+\alignauthor
+Author Names\\
+	   \affaddr{Team D}\\
+      \affaddr{Dim3}\\
+      \affaddr{Fiona Buyers, Christopher James, Ryan Wells}\\
+             \email{\{1003648b, 1003019j, 1002253w \}@students.glasgow.ac.uk }
+}
 \maketitle
 
 \begin{abstract}
@@ -63,7 +63,6 @@ The application itself is a multi-player game designed to encourage users to wor
 \begin{itemize}
 
 \item	What is the purpose of the application?
-
 \item	Eg. The application is an academic search engine called AcaSe and is it is based upon the PuppyIR Framework\cite{glassey2011framework}, which has been used to construct other such services\cite{glassey2010fifi,elliot2010fifi}. The main purpose of this web application is to provide a customized interface to services such as Google Scholar and MS Academic Search. 
 
 \item	What are the assumptions about the aims and objectives?
@@ -84,16 +83,20 @@ The application itself is a multi-player game designed to encourage users to wor
 
 \section{Client Interface}
 
-the thing shows the main page of the thing which has lots of stuff, blah blah blah dribble dribble arse
+\subsection{User Interface}
+
+The user interface was primarily designed to provide a fluid and natural experience to the user. When considering the user experience, care was taken to ensure that the interface was attractive to users but still provided enough functionality on each layer such that users could fulfil all the relevant tasks they wished to without having to change page an excessive amount of times. \\
+
+The interface mostly followed the wireframes originally drawn up, but changes were made following feedback from the presentation earlier in the Semester. The initial design of the application (shown in Figures 1 and 2) had two main pages, a login page, allowing users to login, register and view the current faction scores, and a game page, showing the current users statistics and the buildings the currently owned, along with the current faction scores. Before implementation, this was changed slightly so that the current faction scores are shown in a separate page and both the login and game screens were redesigned slightly, these are shown in figures 204834 - 7174751.\\
+
+There are three main screens: the index page, the game page and the faction scores page. The index  page, provides options to login, register or view the current faction scores. The faction scores page shows the faction that currently has the most money, and also the greatest number of points for each of the categories. This page is accessible from within the game and without logging in, allowing unregistered players the ability to monitor the factions' scores. The main game page shows the current number of buildings each user has, displays their current points and how much money they will earn each turn. Users will also be able to purchase buildings for their city, and personas from this page. 
 
 \begin{figure}[!htbp]
-  \caption{\textit{Main Page}}
+  \caption{\textit{login page}}
   \begin{center}
 		\includegraphics[scale=0.25]{img/w3.png}
   \end{center}
 \end{figure}
-
-the other one shows more stuff that is a lie.
 
 \begin{figure}[!htbp]
   \caption{\textit{Game Page}}
@@ -102,43 +105,28 @@ the other one shows more stuff that is a lie.
   \end{center}
 \end{figure}
 
-The user interface has been designed to be as simple and as funcitonal as possible. 
-There are three main screens: 
-The index  page, provides options to login, register or view the current faction scores.
-The faction scores page shows the faction that currently has the most money, and also the greatest number of points for each of the categories. This page should be accessible from within the game and without logging in, allowing unregistered players the ability to monitor the factions' scores.
-The main game page shows the current number of buildings each user has, displays their current points earnings per turn and how much money they will earn each turn. From here, users will also be able to purchase buildings for their city, and personas.
-
 \subsection{Dynamic Components}
 Due to the nature of the application, frequent updating of the database is required. The majority of the updating done to the client side uses Ajax GET requests, some at a timed interval, some whenever a user performs a specific event, such as purchasing a building.
 
-\subsection{User Interface}
-The user interface was primarily designed to provide a fluid and natural experience to the user. When considering the user experience, care was taken to ensure that the interface was attractive to users but still provided enough functionality on each layer such that users could fulfil all the relevant tasks they wished to without having to change page an excessive amount of times. \\
-The interface mostly followed the wireframes originally drawn up, but changes were made following feedback from the presentation earlier in the Semester. 
 \begin{itemize}
 
 \item	Draw a wireframe of the user interface 
-
 \item	this may require several wireframes depending on the complexity of the application and the interfaces
 
 \item	Describe the user interface.
-
 \item	i.e. Label key input and output components: describe them.
 
 \item	Provide a Walkthrough and explain the user interactions with application. 
 \item	i.e. use cases AAAAAAAAARGH
 
 \item	Describe the interactions associated with the dynamic components on the user interface.
-
 \item	What calls are required to dynamically update the data on the client side?
-
 \item	How does the user interface help the user achieve their goal, or complete their task? 
 
 \item	Is the user interface intuitive, appealing, usable, etc?
 
 \item	What technologies are used on the client side? 
-
 \item	What are the reasons for your choices? i.e. what is the advantages and disadvantages of using this technology? 
-
 \item	What other options are there? 
 
 \end{itemize}
@@ -147,7 +135,6 @@ The interface mostly followed the wireframes originally drawn up, but changes we
 \begin{itemize}
 
 \item	N-Teir Architecture Diagram - chris has this
-
 \item	i.e. data flow diagram between the interface/client, middle ware, and backend services/data repos
 
 \item	Describe the data model i.e. what data needs to be stored or persisted by the application?
@@ -185,11 +172,10 @@ The interface mostly followed the wireframes originally drawn up, but changes we
 
 \section{Implementation Notes}
 
+
 \begin{itemize}
 
 \item Views - What are the main views that you have implemented and what do they do?
-
-
 
 \item URL Mapping Schema - what is your URL mapping and schema?
 
