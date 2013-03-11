@@ -209,11 +209,11 @@
 			  obj = JSON.parse(ret)
 			  console.log(obj);
 			  $('#TITLE').text(obj.title);
-			  $('#INCOME').text(obj.income);
-			  $('#YUMS').text(obj.yums);
-			  $('#KNOWS').text(obj.knows);
-			  $('#GUNS').text(obj.guns);
-			  $('#BORES').text(obj.bores);
+			  $('#INCOME').text((obj.income).toFixed(2));
+			  $('#YUMS').text((obj.yums).toFixed(2));
+			  $('#KNOWS').text((obj.knows).toFixed(2));
+			  $('#GUNS').text((obj.guns).toFixed(2));
+			  $('#BORES').text((obj.bores).toFixed(2));
 			  if(obj.title == "Emporer"){
 			  	$('#BLOKE img').attr("src", "{{ STATIC_URL }}/imgs/emporor.gif");
 			  	$('#BLOKE img').attr("height", "250");
