@@ -1,10 +1,11 @@
 <HTML>
 <html lang="en">
+<link rel="shortcut icon" href="{{ STATIC_URL }}/imgs/civ.gif" />
   <script type="text/javascript" src="{{ STATIC_URL }}jquery.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}/bootstrap/js/bootstrap.js"></script>
   <link href="{{ STATIC_URL }}/bootstrap/css/bootstrap.css" rel="stylesheet">
   <HEADER><meta charset="utf-8">
-    <title>Civilian Info Page</title>
+    <title>Civilian Game Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
       body {
@@ -121,21 +122,21 @@
 			  Character: {{character.name}}
 			
 			  {% if character.name == "Civilian" %}
-			  <img src="{{ STATIC_URL }}/imgs/civ.gif" height="100" width="100" align="middle">
+			  <span id="BLOKE"><img src="{{ STATIC_URL }}/imgs/civ.gif" height="100" width="100" align="middle"></span>
 			  {% elif character.name == "Pirate" %}
-			  <img src="{{ STATIC_URL }}/imgs/pirate.gif" height="350" width="350" align="middle">
+			  <span id="BLOKE"><img src="{{ STATIC_URL }}/imgs/pirate.gif" height="350" width="350" align="middle"></span>
 			  {% elif character.name == "Scientist" %}
-			  <img src="{{ STATIC_URL }}/imgs/scientist.gif" height="300" width="300" align="middle">
+			  <span id="BLOKE"><img src="{{ STATIC_URL }}/imgs/scientist.gif" height="300" width="300" align="middle"></span>
 			  {% elif character.name == "Warrior" %}
-			  <img src="{{ STATIC_URL }}/imgs/warrior.gif" height="300" width="300" align="middle">
+			  <span id="BLOKE"><img src="{{ STATIC_URL }}/imgs/warrior.gif" height="300" width="300" align="middle"></span>
 			  {% elif character.name == "Gentleman" %}
-			  <img src="{{ STATIC_URL }}/imgs/gentleman.gif" height="300" width="300" align="middle">
+			  <span id="BLOKE"><img src="{{ STATIC_URL }}/imgs/gentleman.gif" height="300" width="300" align="middle"></span>
 			  {% elif character.name == "Evil-doer" %}
-			  <img src="{{ STATIC_URL }}/imgs/evildoer.gif" height="300" width="300" align="middle">
+			  <span id="BLOKE"><img src="{{ STATIC_URL }}/imgs/evildoer.gif" height="300" width="300" align="middle"></span>
 			  {% elif character.name == "Politician" %}
-			  <img src="{{ STATIC_URL }}/imgs/politician.gif" height="250" width="250" align="middle">
+			  <span id="BLOKE"><img src="{{ STATIC_URL }}/imgs/politician.gif" height="250" width="250" align="middle"></span>
 			  {% elif character.name == "Emporer" %}
-			  <img src="{{ STATIC_URL }}/imgs/emporor.gif" height="250" width="250" align="middle">
+			  <span id="BLOKE"><img src="{{ STATIC_URL }}/imgs/emporor.gif" height="250" width="250" align="middle"></span>
 			  {% endif %}
 
 			
@@ -166,8 +167,9 @@
 	  		  $('#BARRACKS').text(obj.results[8]);
 	  		  $('#STUDIOS').text(obj.results[9]);
 			  updateStats();
-			  
 			  }
+
+			  
 			  else{
 			  alert("Failed to purchase a new identity!");
 			  }}});
@@ -206,11 +208,45 @@
 			  success:	function(ret)	{	
 			  obj = JSON.parse(ret)
 			  console.log(obj);
+			  $('#TITLE').text(obj.title);
 			  $('#INCOME').text(obj.income);
 			  $('#YUMS').text(obj.yums);
 			  $('#KNOWS').text(obj.knows);
 			  $('#GUNS').text(obj.guns);
 			  $('#BORES').text(obj.bores);
+			  if(obj.title == "Emporer"){
+			  	$('#BLOKE img').attr("src", "{{ STATIC_URL }}/imgs/emporor.gif");
+			  	$('#BLOKE img').attr("height", "250");
+			  	$('#BLOKE img').attr("width", "250");
+			  }else if(obj.title == "Citizen"){
+			  		$('#BLOKE img').attr("src", "{{ STATIC_URL }}/imgs/civ.gif");
+			  		$('#BLOKE img').attr("height", "100");
+			  		$('#BLOKE img').attr("width", "100");
+				}else if(obj.title == "Long-John"){
+			  		$('#BLOKE img').attr("src", "{{ STATIC_URL }}/imgs/pirate.gif");
+			  		$('#BLOKE img').attr("height", "350");
+			  		$('#BLOKE img').attr("width", "350");
+			  }else if(obj.title == "Dr."){
+			  		$('#BLOKE img').attr("src", "{{ STATIC_URL }}/imgs/scientist.gif");
+			  		$('#BLOKE img').attr("height", "300");
+			  		$('#BLOKE img').attr("width", "300");
+			  }else if(obj.title == "The Conquering"){
+			  		$('#BLOKE img').attr("src", "{{ STATIC_URL }}/imgs/warrior.gif");
+			  		$('#BLOKE img').attr("height", "300");
+			  		$('#BLOKE img').attr("width", "300");
+			  }else if(obj.title == "Sir"){
+			  		$('#BLOKE img').attr("src", "{{ STATIC_URL }}/imgs/gentleman.gif");
+			  		$('#BLOKE img').attr("height", "300");
+			  		$('#BLOKE img').attr("width", "300");
+			  }else if(obj.title == "Count von"){
+			  		$('#BLOKE img').attr("src", "{{ STATIC_URL }}/imgs/evildoer.gif");
+			  		$('#BLOKE img').attr("height", "300");
+			  		$('#BLOKE img').attr("width", "300");
+			  }else if(obj.title == "President"){
+			  		$('#BLOKE img').attr("src", "{{ STATIC_URL }}/imgs/politician.gif");
+			  		$('#BLOKE img').attr("height", "250");
+			  		$('#BLOKE img').attr("width", "250");
+			  }
 			  }});	
 			  }
 			</script>

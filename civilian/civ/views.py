@@ -284,9 +284,17 @@ def updateStats(request):
     barracks = Building.objects.get(buildtype="Barracks")
     lab = Building.objects.get(buildtype="Lab")
     newInfo = {}
+    newInfo["title"]=char.title
     newInfo["income"]=((city.farms*farm.profit)+(city.studios*studio.profit)+(city.barracks*barracks.profit)+(city.labs*lab.profit)-city.totalpopulation)*char.money
     newInfo["yums"]=((city.farms*farm.pfood)+(city.studios*studio.pfood)+(city.barracks*barracks.pfood)+(city.labs*lab.pfood))*char.food
     newInfo["knows"]=((city.farms*farm.pscience)+(city.studios*studio.pscience)+(city.barracks*barracks.pscience)+(city.labs*lab.pscience))*char.science
     newInfo["guns"]=((city.farms*farm.pmilitary)+(city.studios*studio.pmilitary)+(city.barracks*barracks.pmilitary)+(city.labs*lab.pmilitary))*char.military
     newInfo["bores"]=((city.farms*farm.part)+(city.studios*studio.part)+(city.barracks*barracks.part)+(city.labs*lab.part))*char.arts
+    newInfo["money"]=city.money
+    return HttpResponse(simplejson.dumps(newInfo))
+    
+def updateMoney(request):
+    user = Users.objects.get(user=request.user)
+    newInfo={}
+    newInfo["money"]=user.city.money
     return HttpResponse(simplejson.dumps(newInfo))
