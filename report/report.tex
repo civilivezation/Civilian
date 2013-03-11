@@ -42,7 +42,7 @@ A multi-player game designed to encourage a balance between personal gain and th
 
 \subsection{Application Purpose}
 
-The application itself is a multi-player game designed to encourage users to work effectively as part of a group. When users register they will be randomly assigned to one of four factions:A, B, C or D. Whilst playing the user will aim to increase not only their individual score, but the score of their faction. To do this, the user will have to buy buildings to expand their `city' and increase their population. There will initially be several different kinds of buildings; farms, barracks, studios and labs; each earning the user points in a different category (food, military, art and science, respectively) and all these buildings will earn money as time progresses. All points are passed onto the faction, representing the faction growing in strength, however the user keeps all money earned as this allows expansion of the city, so the user must consider the potential in both points and money before expanding their city, as a weak faction will be ranked lower than the others, but if a user doesn't have the financial resourced, they will be in no position to help their faction earned the required points. Crisis events will occur throughout the game which will cause buildings of a certain kind to become less or more effective, for example famine or war, so in order for the user to have a successful city and gain the maximum number of points, the city they have created should be as well balanced as possible. More accomplished users will be able to unlock different personas when they have enough money, giving the user different multipliers for each of the points categories, affecting the amount of points earned for the faction. Here there is often a trade-off, as the majority of personas will not only feature positive multipliers, but also some that affect point production negatively. This will allow users to choose what their city will focus on in terms of the types of points they wish to earn, but will also encourage users to continue playing as regular expansions of cities will be required to enable a user to afford a change in persona.
+The application itself is a multi-player game designed to encourage users to work effectively as part of a group. When users register they will be randomly assigned to one of four factions. Whilst playing the user will aim to increase not only their individual score, but the score of their faction. To do this, the user will have to buy buildings to expand their `city' and increase their population. There will be several different kinds of buildings; farms, barracks, studios and labs; each earning the user points in a different category (food, military, art and science, respectively) and all these buildings will earn money as time progresses. Points earned by the user will be added to the total for the relevant faction and the four faction totals will be displayed, showing which faction is the strongest in each area. Crisis events will occur throughout the game which will cause buildings of a certain kind to become less or more effective, for example famine or war, so in order for the user to have a successful city and gain the maximum number of points, the city they have created should be as well balanced as possible. More accomplished users will be able to unlock different personas when they have enough money, giving the user different multipliers for each of the points categories, affecting the amount of points earned for the faction. The majority of personas will not only feature positive multipliers, but also some that are detrimental to point production. This will allow users to choose what their city will focus on in terms of the types of points they wish to earn, but will also encourage users to continue playing as regular expansions of cities will be required to enable a user to afford a change in persona.
 
 \subsection{Functional Requirements}
 
@@ -57,8 +57,6 @@ The application itself is a multi-player game designed to encourage users to wor
 \item The amount of money a user currently has should be tracked and the user should not be allowed to buy buildings or personas that cost more than they have, and when an item is bought the amount of money possessed should be altered appropriately.
 
 \item Users should earn money and points from their current buildings at set time intervals.
-
-\item 
 
 \end{itemize}
  
@@ -86,8 +84,6 @@ The application itself is a multi-player game designed to encourage users to wor
 
 \section{Client Interface}
 
-\verticalspace
-
 the thing shows the main page of the thing which has lots of stuff, blah blah blah dribble dribble arse
 
 \begin{figure}[!htbp]
@@ -106,8 +102,18 @@ the other one shows more stuff that is a lie.
   \end{center}
 \end{figure}
 
+The user interface has been designed to be as simple and as funcitonal as possible. 
+There are three main screens: 
+The index  page, provides options to login, register or view the current faction scores.
+The faction scores page shows the faction that currently has the most money, and also the greatest number of points for each of the categories. This page should be accessible from within the game and without logging in, allowing unregistered players the ability to monitor the factions' scores.
+The main game page shows the current number of buildings each user has, displays their current points earnings per turn and how much money they will earn each turn. From here, users will also be able to purchase buildings for their city, and personas.
 
+\subsection{Dynamic Components}
+Due to the nature of the application, frequent updating of the database is required. The majority of the updating done to the client side uses Ajax GET requests, some at a timed interval, some whenever a user performs a specific event, such as purchasing a building.
 
+\subsection{User Interface}
+The user interface was primarily designed to provide a fluid and natural experience to the user. When considering the user experience, care was taken to ensure that the interface was attractive to users but still provided enough functionality on each layer such that users could fulfil all the relevant tasks they wished to without having to change page an excessive amount of times. \\
+The interface mostly followed the wireframes originally drawn up, but changes were made following feedback from the presentation earlier in the Semester. 
 \begin{itemize}
 
 \item	Draw a wireframe of the user interface 
@@ -115,21 +121,6 @@ the other one shows more stuff that is a lie.
 \item	this may require several wireframes depending on the complexity of the application and the interfaces
 
 \item	Describe the user interface.
-
-The user interface has been designed to be as simple and as funcitonal as possible. 
-There are three main screens: 
-\begin{itemize}
-\item The index  page, provides options to login, register or view the current faction scores.
-\item The faction scores page shows the faction that currently has the most money, and also the greatest number of points for each of the categories. This page should be accessible from within the game and without logging in, allowing unregistered players the ability to monitor the factions' scores.
-\item The main game page shows the current number of buildings each user has, displays their current points earnings per turn and how much money they will earn each turn. From here, users will also be able to purchase buildings for their city, and personas.
-\end{itemize}
-
-\section{Dynamic Components}
-Due to the nature of the application, frequent updating of the database is required. The majority of the updating done to the client side uses Ajax GET requests, some at a timed interval, some whenever a user performs a specific event, such as purchasing a building.
-
-\section{User Interface}
-The user interface was primarily designed to provide a fluid and natural experience to the user. When considering the user experience, care was taken to ensure that the interface was attractive to users but still provided enough functionality on each layer such that users could fulfil all the relevant tasks they wished to without having to change page an excessive amount of times. \\
-The interface mostly followed the wireframes originally drawn up, but changes were made following feedback from the presentation earlier in the Semester. 
 
 \item	i.e. Label key input and output components: describe them.
 
