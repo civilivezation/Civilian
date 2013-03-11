@@ -28,13 +28,13 @@
 %Author Names\\
 %	   \affaddr{Team D}\\
 %      \affaddr{Dim3}\\
-%      \affaddr{Fiona Buyers, Chris James, Ryan Wells}\\
+%      \affaddr{Fiona Buyers, Christopher James, Ryan Wells}\\
 %             \email{\{1003648b, 1003019j, 1002253w \}@students.glasgow.ac.uk }
 %}
 \maketitle
 
 \begin{abstract}
-Provide a concise summary of the design of the application. i wish i was dead
+A multi-player game designed to encourage a balance between personal gain and the well being of a group.
 
 \end{abstract}
 
@@ -42,7 +42,7 @@ Provide a concise summary of the design of the application. i wish i was dead
 
 \subsection{Application Purpose}
 
-The application is a multiplayer game stuff. When users register they will be randomly assigned to one of four factions. Within the faction the user will aim to increase not only their individual score, but the score of their faction. The user will have to buy buildings to expand their `city' and increase their population. There will be several different kinds of buildings; farms, barracks, studios and labs; and each will gain the user points in a different category (food, military, art and science, respectively) and all buildings will earn the user money. Crisis events will occur throughout the game which will cause buildings of a certain kind to become less or more effective, for example famine or war, so in order for the user to have a successful city and gain the maximum number of points, the city they have created should be fairly well balanced. More accomplised users will be able to unlock different personas when they have enough money. These personas will give the user different multipliers for each of the points categories which will affect the amount earned from each kind of building.
+The application itself is a multi-player game designed to encourage users to work effectively as part of a group. When users register they will be randomly assigned to one of four factions:A, B, C or D. Whilst playing the user will aim to increase not only their individual score, but the score of their faction. To do this, the user will have to buy buildings to expand their `city' and increase their population. There will initially be several different kinds of buildings; farms, barracks, studios and labs; each earning the user points in a different category (food, military, art and science, respectively) and all these buildings will earn money as time progresses. All points are passed onto the faction, representing the faction growing in strength, however the user keeps all money earned as this allows expansion of the city, so the user must consider the potential in both points and money before expanding their city, as a weak faction will be ranked lower than the others, but if a user doesn't have the financial resourced, they will be in no position to help their faction earned the required points. Crisis events will occur throughout the game which will cause buildings of a certain kind to become less or more effective, for example famine or war, so in order for the user to have a successful city and gain the maximum number of points, the city they have created should be as well balanced as possible. More accomplished users will be able to unlock different personas when they have enough money, giving the user different multipliers for each of the points categories, affecting the amount of points earned for the faction. Here there is often a trade-off, as the majority of personas will not only feature positive multipliers, but also some that affect point production negatively. This will allow users to choose what their city will focus on in terms of the types of points they wish to earn, but will also encourage users to continue playing as regular expansions of cities will be required to enable a user to afford a change in persona.
 
 \subsection{Functional Requirements}
 
@@ -54,7 +54,7 @@ The application is a multiplayer game stuff. When users register they will be ra
 
 \item Upon registration, the user should be randomly assigned a faction.
 
-\item The amount of money a user currently has should be tracked and the user should not be allowed to buy buildings or personas that cost more than they have, and when an item is bought the amount of money possess should be altered appropriately.
+\item The amount of money a user currently has should be tracked and the user should not be allowed to buy buildings or personas that cost more than they have, and when an item is bought the amount of money possessed should be altered appropriately.
 
 \item Users should earn money and points from their current buildings at set time intervals.
 
@@ -116,11 +116,20 @@ the other one shows more stuff that is a lie.
 
 \item	Describe the user interface.
 
-the user interface has been designed to be as simple as possible. 
-there are three main screens: 
-main page - options to login, register or view the current faction scores
-faction scores page - shows the faction that currently has the most money, and also the greatest number of points for each of the categories - should be accessible from within the game and without logging in
-game page - shows the current number of buildings each user has, displays their current amounts of points and money which will be updated after each turn. also allows the user to buy more buildings and buy different personas. 
+The user interface has been designed to be as simple and as funcitonal as possible. 
+There are three main screens: 
+\begin{itemize}
+\item The index  page, provides options to login, register or view the current faction scores.
+\item The faction scores page shows the faction that currently has the most money, and also the greatest number of points for each of the categories. This page should be accessible from within the game and without logging in, allowing unregistered players the ability to monitor the factions' scores.
+\item The main game page shows the current number of buildings each user has, displays their current points earnings per turn and how much money they will earn each turn. From here, users will also be able to purchase buildings for their city, and personas.
+\end{itemize}
+
+\section{Dynamic Components}
+Due to the nature of the application, frequent updating of the database is required. The majority of the updating done to the client side uses Ajax GET requests, some at a timed interval, some whenever a user performs a specific event, such as purchasing a building.
+
+\section{User Interface}
+The user interface was primarily designed to provide a fluid and natural experience to the user. When considering the user experience, care was taken to ensure that the interface was attractive to users but still provided enough functionality on each layer such that users could fulfil all the relevant tasks they wished to without having to change page an excessive amount of times. \\
+The interface mostly followed the wireframes originally drawn up, but changes were made following feedback from the presentation earlier in the Semester. 
 
 \item	i.e. Label key input and output components: describe them.
 
@@ -153,7 +162,7 @@ game page - shows the current number of buildings each user has, displays their 
 \item	Describe the data model i.e. what data needs to be stored or persisted by the application?
 
 \item	What are the relationships within the data model.
-\item	i.e. use ER diagram and explain. - chris 
+\item	i.e. use ER diagram and explain. - chris I DONT KNOW, we never had one really
 
 \item	Describe the backend services used (if any).
 
@@ -229,8 +238,8 @@ game page - shows the current number of buildings each user has, displays their 
 \end{itemize}
 
 \section{Acknowledgements}
-Our thanks to the lecturers and demonstrators for their comments and suggestions. And our thanks to the peer reviewers for their feedback.
-Be sincere and be specific about how others have helped your group.
+Our thanks to Lief and Euan for their comments, suggestions and interest they showed in the project throughout the duration of the course. And our thanks to the peer reviewers for their feedback.
+Thanks also go to Tom Whitely for his evaluation of the interface and the suggestions he made.
 
 \bibliographystyle{abbrv}
 \bibliography{sig-proc}
