@@ -47,10 +47,10 @@ The application itself is a multi-player game designed to encourage users to wor
 \subsection{Assumptions}
 
 What are the assumptions about the aims and objectives?
-- not having more than one account
-- not losing password
-- have a basic understanding of how this kind of game works
 -
+- 
+-
+
 
 \subsection{Design Goals and Objectives} 
 
@@ -132,37 +132,52 @@ The interface mostly followed the wireframes originally drawn up, but changes we
 \begin{figure}[!htbp]
   \caption{\textit{Total Faction Points Page}}
   \begin{center}
-		\includegraphics[scale=0.15]{img/faction.png}
+		\includegraphics[scale=0.30]{img/factionlabel.png}
   \end{center}
 \end{figure}
+
+
+\begin{enumerate}
+\item Takes the user back to the index page. 
+\item This will take the user to their game page.
+\item Logs the user out.
+\item Each bar shows the distribution of points between the factions. This one shows the total points distribution.
+\item This shows the percentage of art points the team D have.
+\end{enumerate}
 
 \begin{figure}[!htbp]
   \caption{\textit{Game Page}}
   \begin{center}
-		\includegraphics[scale=0.15]{img/gamescreen.png}
+		\includegraphics[scale=0.30]{img/gamelabel.png}
   \end{center}
 \end{figure}
+
+\begin{enumerate}
+\item Takes the user back to the index page.
+\item Allows the user to purchase good personas (ie. citizen, gentleman, warrior, scientist).
+\item Allows the user to purchase evil personas (ie. pirate, evil doer, emperor, politician).
+\item Takes the user to the faction scores screen.
+\item Logs the user out.
+\item Shows how many points and how much money is earned per turn with the user's current buildings and persona.
+\item Shows the number of buildings, the amount of money and the employment information of the city's population.
+\item Shows the user's persona.
+\item Allows the user to buy new buildings. Also shows how much the building costs, the profits of the building and the points gained from the building gained each turn.
+\item Allows the user to buy a residence and shows the population increase from buying the building and the cost of running the residence.
+\end{enumerate}
+
 
 \begin{figure}[!htbp]
   \caption{\textit{Index Page}}
   \begin{center}
-		\includegraphics[scale=0.15]{img/index2.png}
+		\includegraphics[scale=0.30]{img/indexlabel.png}
   \end{center}
 \end{figure}
 
-\begin{figure}[!htbp]
-  \caption{\textit{Register Page}}
-  \begin{center}
-		\includegraphics[scale=0.15]{img/register.png}
-  \end{center}
-\end{figure}
-
-\begin{figure}[!htbp]
-  \caption{\textit{Login Page}}
-  \begin{center}
-		\includegraphics[scale=0.15]{img/login.png}
-  \end{center}
-\end{figure}
+\begin{enumerate}
+\item Allows the user to log in.
+\item Lets new users register.
+\item Takes the user to the faction scores page.
+\end{enumerate}
 
 There final design has three main screens: the index page, the game page and the faction scores page. The index  page, provides options to login, register or view the current faction scores. The faction scores page shows the faction that currently has the most money, and also the greatest number of points for each of the categories. This page is accessible from within the game and without logging in, allowing unregistered players the ability to monitor the factions' scores. The main game page shows the current number of buildings each user has, displays their current points and how much money they will earn each turn. Users will also be able to purchase buildings for their city, and personas from this page. 
 
@@ -193,6 +208,20 @@ Describe the data model i.e. what data needs to be stored or persisted by the ap
 
 What are the relationships within the data model.
 i.e. use ER diagram and explain. {\bf *need diagrams*} 
+
+\begin{figure}[!htbp]
+  \caption{\textit{ER diagram}}
+  \begin{center}
+		\includegraphics[scale=0.40]{img/er.png}
+  \end{center}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \caption{\textit{Lovely Tables}}
+  \begin{center}
+		\includegraphics[scale=0.40]{img/tables.png}
+  \end{center}
+\end{figure}
 
 \subsection{Backend Services}
 
