@@ -213,6 +213,19 @@
 			  $('#BORES').text(obj.bores);
 			  }});	
 			  }
+			  
+			  (function worker(){
+			  $.ajax({type:"GET",
+			  url: "/civ/updateMoney/",
+			  success: function(ret){
+			  obj = JSON.parse(ret);
+			  console.log(obj);
+			  $('#MONEY').text(obj.money);
+			  },
+			  complete: function(){
+			  setTimeout(worker,1000);
+			  }});
+			  })();
 			</script>
 			</div>	
 	  
