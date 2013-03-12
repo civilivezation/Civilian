@@ -1,4 +1,4 @@
-\documentclass{sig-alt-release2}
+`\documentclass{sig-alt-release2}
 \usepackage{url}
 \usepackage{color}
 \usepackage{graphics,graphicx}
@@ -259,19 +259,52 @@ What other formats could be used, what are the advantages and disadvantages of t
 
 \subsection{Views}
 
-Views - What are the main views that you have implemented and what do they do?
-
+The main views are as follows:
+\begin{itemize}
+\item register - Used to create a new user and required attributes in their database.
+\item live - Used to represent the current factions scores and represent them as a set of graphs to the user.
+\item game - Takes the user to the game html page, showing current earnings and information about the user.
+\item suggest - Allows a user to purchase different buildings, checks to see if enough funds and workers first. Returns dump of success or failure.
+\item buyguy - Allows user to purchase a new persona, checking to see if there are enough funds. Returns dump of success or failure.
+\item updateLive - Used to keep live screen up to date, used at a timed interval.
+\item updateStats - Called to update users stats upon completion of a purchase, allows these to be changed without need of a page refresh.
+\item updateMoney - Called often to keep users amount of money accurate.
+\end{itemize}
+There also exists the traditional login and logout views.
 \subsection{URL Mapping Schema}
 
-URL Mapping Schema - what is your URL mapping and schema?
+There is one url for each of the views with the same name, however there are only five that get displayed to the user: /civ/, /civ/login/, /civ/register/, /civ/game/ and /civ/live/. The /civ/ pgae and /civ/live/ pages are both offered to logged in and nonregistered users, with options to register for those not logged in, and access to the game page for those who are.
 
 \subsection{External Services}
 
-External Services  - what external services does your application include and what handlers did you include?
+The application used the Django framework, and Twitter's Bootstrap for the CSS. 
 
 \subsection{Functionality Checklist}
 
-Functionality Checklist (which functionality is completed) - everything except crises
+The functionality that is featured in the implementation is as follows:
+
+\begin{itemize}
+
+\item The user's individual score should be tracked.
+
+\item The individual score should affect the appropriate team's overall score.
+
+\item Upon registration, the user should be randomly assigned a faction.
+
+\item The amount of money a user currently has should be tracked and the user should not be allowed to buy buildings or personas that cost more than they have, and when an item is bought the amount of money possessed should be altered appropriately.
+
+\item Users should earn money and points from their current buildings at set time intervals.
+
+\item Users should be able to purchase several different kinds of building and persona if they have enough money.
+
+\item Users should be able to return to civilian status for free whenever they want.
+
+\item The faction scores page should be accessible both from the login page to users who are not logged in, and from the main game screen.
+
+\item The faction scores page should show the percentage of the total number of points each faction has.
+
+\end{itemize}
+
 
 \subsection{Known Issues}
 
@@ -283,6 +316,8 @@ What technologies have been used and are required for the application. Include a
 
 \section{Reflective Summary}
 
+The main lesson reinforced through development was that a comprehensive and thoughtful Design phase enables a much faster and more technically accurate implementation. A considerable amount of time was spent prior to coding figuring out both the game mechanics and the representation of data in the models. This resulted in very few errors during coding, as whilst individuals coded seperately, there was a standard model there for the to refer to.
+The application of the Django framework 
 For the Implementation Report Only:
 What have you learnt through the process of development? 
 How did the application of frameworks help or hinder your progress?
