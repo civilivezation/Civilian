@@ -46,25 +46,17 @@ The application itself is a multi-player game designed to encourage users to wor
 
 \subsection{Assumptions}
 
-What are the assumptions about the aims and objectives?
--
-- 
--
-
+What are the assumptions about the aims and objectives?\\
 
 \subsection{Design Goals and Objectives} 
 
-Describe the design goals and objectives of the application.
--
+Describe the design goals and objectives of the application.\\
 
 \subsection{Constraints}
 
-What are the constraints of the project?
--
+What are the constraints of the project?\\
 
 \subsection{Functional Requirements}
-
-Functionality List: i.e. what is the required and desired functionality?
 
 \begin{itemize}
 
@@ -99,17 +91,6 @@ Is distribution across the web appropriate?
 \section{Client Interface}
 
 \subsection{User Interface}
-
-Draw a wireframe of the user interface 
-this may require several wireframes depending on the complexity of the application and the interfaces {\bf *need diagrams*} 
-
-Describe the user interface.
-i.e. Label key input and output components: describe them. {\bf *need diagrams*} 
-
-Is the user interface intuitive, appealing, usable, etc?
-
-Provide a Walkthrough and explain the user interactions with application. 
-i.e. use cases AAAAAAAAARGH {\bf *need diagrams*} \\
 
 The user interface was primarily designed to provide a fluid and natural experience to the user. When considering the user experience, care was taken to ensure that the interface was attractive to users but still provided enough functionality on each layer such that users could fulfil all the relevant tasks they wished to without having to change page an excessive amount of times. \\
 
@@ -165,7 +146,6 @@ The interface mostly followed the wireframes originally drawn up, but changes we
 \item Allows the user to buy a residence and shows the population increase from buying the building and the cost of running the residence.
 \end{enumerate}
 
-
 \begin{figure}[!htbp]
   \caption{\textit{Index Page}}
   \begin{center}
@@ -197,7 +177,14 @@ What other options are there?
 
 \section{Application Architecture}
 
-\subsection{N-Teir Architecture Diagram}
+\subsection{N-Tier Architecture Diagram}
+
+\begin{figure}[!htbp]
+  \caption{\textit{n tier diagram}}
+  \begin{center}
+		\includegraphics[scale=0.28]{img/NTIER.jpg}
+  \end{center}
+\end{figure}
 
 N-Teir Architecture Diagram - chris has this {\bf *need diagrams*} 
 i.e. data flow diagram between the interface/client, middle ware, and backend services/data repos
@@ -239,6 +226,22 @@ And, what are the disadvantages?
 
 \subsection{Sequence Diagrams}
 
+\begin{figure}[!htbp]
+  \caption{\textit{Sequence Diagram}}
+  \begin{center}
+		\includegraphics[scale=0.35]{img/sequencelabel.png}
+  \end{center}
+\end{figure}
+
+\begin{enumerate}
+\item User clicks on desired item.
+\item Client sends HTTP GET request to middleware via Ajax
+\item Middleware access database using ORM query.
+\item Database returns info to middleware.
+\item Middleware passed information to client.
+\item Client changes info with Ajax.
+\end{enumerate}
+
 On the architecture diagram, identify and label the main messages that will be parsed through the application.
 or alternatively (and preferably) include sequence diagrams to denote the sequence of communications parse between clients and servers. {\bf *need diagrams*} 
 
@@ -277,6 +280,8 @@ Functionality Checklist (which functionality is completed) - everything except c
 
 Known Issues (what kind of works, what kind of errors to do you get)
 
+there are no known issues, except that everyone will want to play our game now.
+
 \subsection{Technologies Used}
 
 What technologies have been used and are required for the application. Include a list or table of all the technologies, standards, and protocols that will be required.
@@ -292,19 +297,27 @@ What were your major achievements?
 
 \section{Summary and Future Work}
 
+The application has all the initial features implemented, except the crisis events. Users are currently able to purchase buildings of each type initially specified (farm, barracks, studio and labs) and the initial eight personas. The money earned each turned and faction points are updated every minute.
+
+Currently, the main limitation of the game is that after a while, users manage to earn money at a greater rate than they can spend it. This has led to users with millions of credits they are unable to spend and led to some of the more avid users having thousands of buildings and completely dominating the faction leaderboard and no other teams being able to catch up.
+
+In the future, the turn length would be increased in order to prevent the accumulation of enormous amounts of money. The crises event feature would also be implemented and more buildings and personas would be made available. It was also considered that users might eventually be able to split off from a faction to form their own. time until next turn. some kind of graphical thing. increase turn time when logged out
+
 Summary of application and its current state.
 
 Include a list or table of all the technologies, standards, and protocols that will be required.
 
 What are the limitations?
 
-Plans for future development - crisis events, more personas and buildings.
-
-The application 
+Plans for future development \\
+- crisis events\\
+- more personas\\
+- and buildings.\\
 
 \section{Acknowledgements}
 Our thanks to Lief and Euan for their comments, suggestions and interest they showed in the project throughout the duration of the course. And our thanks to the peer reviewers for their feedback.
 Thanks also go to Tom Whitely for his evaluation of the interface and the suggestions he made.
+We would also like it noted that we appreciate the input of several others who made our application incredibly competitive and verging on violent.
 
 \bibliographystyle{abbrv}
 \bibliography{sig-proc}
